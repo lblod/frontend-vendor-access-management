@@ -1,7 +1,8 @@
 <AuHeading>Edit vendor</AuHeading>
 
 <p>vendorname: {{this.model.name}} </p>
-name {{this.model.canActOnBehalf}}
+<label>API KEY: </label>
+ <Input @type="password" value="{{this.model.key}}" readonly/>
 
 <AuDataTable @content={{this.model.canActOnBehalf}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{sort}} @size={{size}} @page={{page}} @isLoading={{isLoading}} as |t|>
   <t.content as |c|>
