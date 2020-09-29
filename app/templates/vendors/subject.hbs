@@ -6,16 +6,16 @@ name {{this.model.canActOnBehalf}}
 <AuDataTable @content={{this.model.canActOnBehalf}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{sort}} @size={{size}} @page={{page}} @isLoading={{isLoading}} as |t|>
   <t.content as |c|>
     <c.header>
-      <th class="data-table__header-title u-hidden--mobile">Naam</th>
-      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Uri</th>
-      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">modify</th>
+      <th class="data-table__header-title u-hidden--mobile">Bestuurseenheid</th>
+      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Type</th>
+      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Actie</th>
     </c.header>
     <c.body as |row|>
       <td>
           {{row.naam}}
       </td>
       <td>
-          {{row.uri}}
+          {{row.classificatie.label}}
       </td>
       <td>
           <AuButton @alert="true">Delete</AuButton>
