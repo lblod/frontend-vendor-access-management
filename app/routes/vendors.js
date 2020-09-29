@@ -1,8 +1,9 @@
 import Route from '@ember/routing/route';
-
-export default class VendorsRoute extends Route {
-
-  model(params){
+import DataTableRouteMixin from 'ember-data-table/mixins/route';
+export default Route.extend(DataTableRouteMixin, {
+  modelName: 'vendor',
+  
+  model(){
     return this.store.findAll('vendor')
   }
-}
+});
