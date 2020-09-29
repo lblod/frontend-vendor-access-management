@@ -1,4 +1,4 @@
-<AuDataTable @content={{model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{sort}} @size={{size}} @page={{page}} @isLoading={{isLoading}} as |t|>
+<AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{sort}} @size={{size}} @page={{page}} @isLoading={{isLoading}} as |t|>
   <t.content as |c|>
     <c.header>
       <th class="data-table__header-title u-hidden--mobile">Naam</th>
@@ -13,8 +13,9 @@
           {{row.uri}}
       </td>
       <td>
-          <AuButton >edit</AuButton>
+          <LinkTo @route="vendors.subject" @model={{row.id}}>Edit</LinkTo>
       </td>
     </c.body>
   </t.content>
 </AuDataTable>
+
