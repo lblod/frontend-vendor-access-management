@@ -1,1 +1,20 @@
-{{outlet}}
+<AuDataTable @content={{model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{sort}} @size={{size}} @page={{page}} @isLoading={{isLoading}} as |t|>
+  <t.content as |c|>
+    <c.header>
+      <th class="data-table__header-title u-hidden--mobile">Naam</th>
+      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Uri</th>
+      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">modify</th>
+    </c.header>
+    <c.body as |row|>
+      <td>
+          {{row.name}}
+      </td>
+      <td>
+          {{row.uri}}
+      </td>
+      <td>
+          <AuButton >edit</AuButton>
+      </td>
+    </c.body>
+  </t.content>
+</AuDataTable>
