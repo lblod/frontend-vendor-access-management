@@ -2,7 +2,9 @@ import Route from '@ember/routing/route';
 
 export default class VendorsSubjectRoute extends Route {
   model(params){
-    return this.store.findRecord('vendor',  params.id ,{ include: ["can-act-on-behalf" ,"classificatie" ] }
-    )
+    return  Ember.RSVP.hash({
+      vendor: this.store.findRecord('vendor',  params.id ,{ include: ["can-act-on-behalf" ,"classificatie" ] }),
+      bestuurseenheden: this.store.findAll('bestuurseenheid')
+    })
   }
 }
