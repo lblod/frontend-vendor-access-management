@@ -5,27 +5,26 @@
       Externe software leveranciers
     </AuHeading>
 
-    <AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{sort}}
-      @size={{size}} @page={{page}} @isLoading={{isLoading}} as |t|>
+    <AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{this.sort}}
+      @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
       <t.content as |c|>
         <c.header>
-          <th class="data-table__header-title u-hidden--mobile">Naam</th>
-          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Uri</th>
-          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">modify</th>
+          <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label="Naam" @class="data-table__header-title" />
+          <AuDataTableThSortable @field="uri" @currentSorting={{sort}} @label="URI" @class="data-table__header-title" />
+          <th> aanpassen </th>
         </c.header>
-        <c.body as |row|>
+        <c.body as |vendor|>
           <td>
-            {{row.name}}
+            {{vendor.name}}
           </td>
           <td>
-            {{row.uri}}
+            {{vendor.uri}}
           </td>
           <td>
-            <LinkTo @route="vendors.subject" @model={{row.id}}>Edit</LinkTo>
+            <LinkTo @route="vendors.subject" @model={{vendor.id}}>Edit</LinkTo>
           </td>
         </c.body>
       </t.content>
     </AuDataTable>
-
   </div>
 </div>
