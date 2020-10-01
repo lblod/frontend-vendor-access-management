@@ -31,7 +31,7 @@
       </AuToolbarGroup>
     </AuToolbar>
     <br>
-    <AuDataTable @content={{this.model.vendor.canActOnBehalf}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
+    <AuDataTable @content={{this.model.vendor.canActOnBehalfOf}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
       @sort={{sort}} @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
       <t.content as |c|>
         <c.header>

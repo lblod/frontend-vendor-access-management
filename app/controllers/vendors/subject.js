@@ -10,7 +10,7 @@ export default class VendorsSubjectController extends Controller {
   @action async addBestuurseenheid(bestuurseenheid, vendor){
     let targetVendor = this.store.peekRecord('vendor', vendor.id)
     let bestuurseenheidRelation = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id)
-    let canActOnBehalf = await vendor.canActOnBehalf
+    let canActOnBehalf = await vendor.canActOnBehalfOf
     canActOnBehalf.pushObject(bestuurseenheidRelation)
     targetVendor.save()
   }
