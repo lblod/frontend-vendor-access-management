@@ -8,7 +8,16 @@
 
       <AuToolbarGroup>
 
-        <AuButton @icon="add" {{on 'click' (toggle "showBestuurseenheden" this)}}>Add</AuButton>
+        <AuModal @buttonTitle="Open modal" @modalTitle="Bestuurseenheid toevoegen">
+          <AuModalBody>
+                <BestuurseenheidToevoegen 
+                  @searchTask={{perform this.searchBestuursType}}
+                />
+          </AuModalBody>
+          <AuModalFooter>
+            <AuButton>Action</AuButton>
+          </AuModalFooter>
+        </AuModal>
 
       </AuToolbarGroup>
       <AuToolbarGroup>
@@ -31,6 +40,7 @@
       </AuToolbarGroup>
     </AuToolbar>
     <br>
+    <AuHeading @skin='3'>Persmissions list</AuHeading>
     <AuDataTable @content={{this.model.vendor.canActOnBehalfOf}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
       @sort={{sort}} @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
       <t.content as |c|>
@@ -55,7 +65,7 @@
   </div>
 
   {{!-- {{#if this.showBestuurseenheden}} --}}
-     <AuHeading @skin='3'>Add bestuurseenheid permission</AuHeading>
+  <AuHeading @skin='3'>Add permission</AuHeading>
   <AuDataTable @content={{without this.model.vendor.canActOnBehalfOf this.model.bestuurseenheden}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
     @sort={{sort}} @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
     <t.content as |c|>
