@@ -1,0 +1,10 @@
+        <div id="ember-test"></div>
+        <PowerSelect 
+          @search={{@searchTask}}
+          @searchEnabled={{true}}
+          @destination="ember-test"
+          @selected={{this.selected}}
+          @onChange={{this.debug}} as |elem|>
+          {{elem.naam}}
+        </PowerSelect>
+
