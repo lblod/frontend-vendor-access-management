@@ -56,7 +56,7 @@
 
   {{!-- {{#if this.showBestuurseenheden}} --}}
      <AuHeading @skin='3'>Add bestuurseenheid permission</AuHeading>
-  <AuDataTable @content={{this.model.bestuurseenheden}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
+  <AuDataTable @content={{without this.model.vendor.canActOnBehalfOf this.model.bestuurseenheden}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
     @sort={{sort}} @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
     <t.content as |c|>
       <c.header>
