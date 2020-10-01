@@ -7,11 +7,22 @@ export default class VendorsSubjectController extends Controller {
   @tracked page = 0
   @tracked size = 10
 
-  @action async addBestuurseenheid(bestuurseenheid, vendor){
+  @action async patchVendor(bestuurseenheid, vendor, todo){
+    // Get vendor, bestuurseenheid & relationship array
     let targetVendor = this.store.peekRecord('vendor', vendor.id)
-    let bestuurseenheidRelation = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id)
-    let canActOnBehalf = await vendor.canActOnBehalfOf
-    canActOnBehalf.pushObject(bestuurseenheidRelation)
+    let targetBestuurseenheid = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id)
+    let relationship = await vendor.canActOnBehalfOf
+
+    // Action to be performed based on argument
+    if (todo == "delete"){
+      relationship.removeObject(targetBestuurseenheid)
+    }
+
+    if (todo == "add") {
+      relationship.pushObject(targetBestuurseenheid)
+    }
+
+    // PATCH /
     targetVendor.save()
   }
 
