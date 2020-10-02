@@ -30,6 +30,7 @@ export default class VendorsSubjectController extends Controller {
     
     // PATCH /
     targetVendor.save()
+    this.bestuurseenhedenLijst = A([])
   }
 
   @(task(function* (term) {
@@ -41,6 +42,10 @@ export default class VendorsSubjectController extends Controller {
   @action async appendBestuurseenheid(eenheid){
     let targetBestuurseenheid = await this.store.peekRecord('bestuurseenheid', eenheid.id)
     this.bestuurseenhedenLijst.pushObject(targetBestuurseenheid)
+  }
+
+  @action removeBestuurseenheid(eenheid){
+    this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid)
   }
 
 
