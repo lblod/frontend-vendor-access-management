@@ -22,10 +22,11 @@
           @noMatchesMessage="Geen resultaten"
           @destination="ember-test"
           @onChange={{@appendBestuurseenheid}} as |eenheid|>
-          {{eenheid.naam}} ({{eenheid.classificatie.label}})
+          {{#unless (contains eenheid @bestuurseenhedenLijst) }}
+           {{eenheid.naam}} ({{eenheid.classificatie.label}})
+          {{/unless}}
         </PowerSelect>
       </div>
-      <AuHelpText>Oost-Vlaanderen, Berchem, Hasselt, ...</AuHelpText>
     </c.content>
   </AuCard>
 
@@ -40,8 +41,8 @@
 
         <div class=""  {{auto-focus '.au-c-button' }}>
           {{#each @bestuurseenhedenLijst as |eenheid|}}
-            <AuPill>
-                {{eenheid.naam}}
+            <AuPill class="au-u-margin-bottom-small">
+                {{eenheid.naam}}  <AuIcon @icon="cross" @size="medium" {{on 'click' (fn @removeBestuurseenheid eenheid) }}/>
             </AuPill>
           {{/each}}
         </div>
