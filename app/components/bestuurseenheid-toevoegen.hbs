@@ -1,10 +1,54 @@
-        <div id="ember-test"></div>
+
+
+
+  <div class="au-o-flow">
+      <div id="ember-test"></div>
+  <AuCard @flex="true" as |c|>
+    <c.header @badgeSkin="{{if this.bestuurseenheid "success" "action"}}" @badgeIcon="{{if this.bestuurseenheid "check"}}" @badgeNumber="{{unless this.bestuurseenheid "1"}}">
+      <AuHeading @level="2" @skin="4" id="describe-search">
+        Zoek een bestuurseenheid
+      </AuHeading>
+    </c.header>
+    <c.content>
+            
+      <div style="position: relative; overflow: hidden;">
         <PowerSelect 
-          @search={{@searchTask}}
+          @ariaLabel="Zoekbalk"
+          @search={{perform @searchTask}}
+          @allowClear={{true}}
           @searchEnabled={{true}}
+          @loadingMessage="Aan het laden..."
+          @searchMessage="Typ om te zoeken"
+          @noMatchesMessage="Geen resultaten"
           @destination="ember-test"
-          @selected={{this.selected}}
-          @onChange={{this.debug}} as |elem|>
-          {{elem.naam}}
+          @onChange={{@appendBestuurseenheid}} as |eenheid|>
+          {{eenheid.naam}} ({{eenheid.classificatie.label}})
         </PowerSelect>
+      </div>
+      <AuHelpText>Oost-Vlaanderen, Berchem, Hasselt, ...</AuHelpText>
+    </c.content>
+  </AuCard>
+
+  <AuCard @flex="true" as |c|>
+    <c.header>
+      <AuHeading @level="2" @skin="4">
+        Lijst
+      </AuHeading>
+    </c.header>
+
+    <c.content>
+
+        <div class=""  {{auto-focus '.au-c-button' }}>
+          {{#each @bestuurseenhedenLijst as |eenheid|}}
+            <AuPill>
+                {{eenheid.naam}}
+            </AuPill>
+          {{/each}}
+        </div>
+    </c.content>
+  </AuCard>
+
+
+</div>
+
 

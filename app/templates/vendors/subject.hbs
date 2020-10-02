@@ -11,11 +11,14 @@
         <AuModal @buttonTitle="Open modal" @modalTitle="Bestuurseenheid toevoegen">
           <AuModalBody>
                 <BestuurseenheidToevoegen 
-                  @searchTask={{perform this.searchBestuursType}}
+                  @searchTask={{this.searchBestuursType}}
+                  @onListBestuurseenheden={{this.listBestuurseenheden}}
+                  @appendBestuurseenheid={{this.appendBestuurseenheid}}
+                  @bestuurseenhedenLijst={{this.bestuurseenhedenLijst}}
                 />
           </AuModalBody>
           <AuModalFooter>
-            <AuButton>Action</AuButton>
+            <AuButton  {{ on 'click' (fn this.patchVendor null this.model.vendor "add")}}>Opslaan</AuButton>
           </AuModalFooter>
         </AuModal>
 
@@ -64,29 +67,4 @@
     </AuDataTable>
   </div>
 
-  {{!-- {{#if this.showBestuurseenheden}} --}}
-  <AuHeading @skin='3'>Add permission</AuHeading>
-  <AuDataTable @content={{without this.model.vendor.canActOnBehalfOf this.model.bestuurseenheden}} @fields="Vendors" @noDataMessage="Geen vendors gevonden"
-    @sort={{sort}} @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
-    <t.content as |c|>
-      <c.header>
-        <th class="data-table__header-title u-hidden--mobile">Bestuurseenheid</th>
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Type</th>
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Actie</th>
-      </c.header>
-      <c.body as |bestuurseenheid|>
-        <td>
-          {{bestuurseenheid.naam}}
-        </td>
-        <td>
-          {{bestuurseenheid.classificatie.label}}
-        </td>
-        <td>
-          <AuButton {{ on 'click' (fn this.patchVendor bestuurseenheid this.model.vendor "add")}}>add</AuButton>
-        </td>
-      </c.body>
-    </t.content>
-  </AuDataTable>
-
-  {{!-- {{/if}} --}}
 </div>
