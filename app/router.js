@@ -10,4 +10,5 @@ Router.map(function() {
   this.route('vendors', function() {
     this.route('subject', { path: '/:id' });
   });
+  this.route('mock-login');
 });
