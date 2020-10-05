@@ -7,10 +7,13 @@
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Bekijk de mandaten in een bestuur</AuHeading>
     <p class="au-u-margin-bottom-large">Overzicht van alle besturen in de huidige bestuursperiode.</p>
 
+    {{#if isLoggedIn}}
       <AuLink @linkRoute="vendors" @icon="user-fill" @iconAlignment="left" class="au-u-margin-bottom">
         Bekijk alle leveranciers.
       </AuLink>
-
+    {{else}}
+        <AuButton @icon="user" {{on 'click' this.login}}>Login</AuButton>
+    {{/if}}
    
   </div>
    <p>Mail naar <a class="au-c-link" href="mailto:LoketLokaalBestuur@vlaanderen.be">LoketLokaalBestuur@vlaanderen.be</a> voor meer informatie.</p>
