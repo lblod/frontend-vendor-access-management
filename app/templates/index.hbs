@@ -1,18 +1,18 @@
-<AuContentHeader @titlePartOne="Vlaanderen" @titlePartTwo="mandatendatabank" @pictureSize="large">
+<AuContentHeader @titlePartOne="Vlaanderen" @titlePartTwo="Software leveranciers" @pictureSize="large">
   <img sizes="50vw" src="/assets/images/loket-header-1600-85a5251e74ef6ac8491b2f228d2c90da.jpg" srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="Foto van een stad met een kanaal en huizen.">
 </AuContentHeader>
 
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">Bekijk de mandaten in een bestuur</AuHeading>
-    <p class="au-u-margin-bottom-large">Overzicht van alle besturen in de huidige bestuursperiode.</p>
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom" >Bekijk de lijst met software leveranciers </AuHeading>
+    <p class="au-u-margin-bottom-large">Lijst van alle software leveranciers.</p>
 
     {{#if isLoggedIn}}
       <AuLink @linkRoute="vendors" @icon="user-fill" @iconAlignment="left" class="au-u-margin-bottom">
         Bekijk alle leveranciers.
       </AuLink>
     {{else}}
-        <AuButton @icon="user" {{on 'click' this.login}}>Login</AuButton>
+        <AuButton @icon="user" {{on 'click' this.login}}>Inloggen</AuButton>
     {{/if}}
    
   </div>

@@ -1,8 +1,5 @@
-<div class="au-o-body-container au-o-box au-o-layout">
-  <div class="au-u-margin-top au-u-margin-bottom">
-
-
-    <AuHeading class="au-o-region">Edit vendor</AuHeading>
+<div class="au-o-body-container au-o-box au-o-layout au-u-margin-top au-u-margin-bottom">
+    <AuHeading class="au-o-region">Wijzig toegankelijkheid</AuHeading>
 
     <AuCard @flex="true" class="au-u-margin-bottom" as |c|>
       <c.header @badgeSkin="brand" @badgeIcon="users">
@@ -11,13 +8,13 @@
         </AuHeading>
       </c.header>
       <c.content>
-        <p>
-          <AuLabel for="input-regular">API KEY: </AuLabel>
+        <div class="au-o-box">
+          <AuLabel for="input-regular" class="au-u-bold">API sleutel </AuLabel>
           <AuInput id="input-regular" type={{if this.hiddenKeyState "text" "password"}}
             value="{{this.model.vendor.key}}" readonly />
           <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>Toon</AuButton>
           <AuButton {{on 'click' (fn this.copyToClipboard this.model.vendor.key)}} @skin="secondary">Kopieer</AuButton>
-        </p>
+        </div>
       </c.content>
     </AuCard>
     <AuToolbar class="au-o-region">
@@ -64,6 +61,4 @@
         </c.body>
       </t.content>
     </AuDataTable>
-  </div>
-
 </div>
