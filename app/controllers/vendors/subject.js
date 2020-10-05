@@ -48,6 +48,10 @@ export default class VendorsSubjectController extends Controller {
     this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid)
   }
 
+  @action copyToClipboard(key){
+    navigator.clipboard.writeText(key)
+  }
+
 
 
 }

@@ -16,6 +16,7 @@
           <AuInput id="input-regular" type={{if this.hiddenKeyState "text" "password"}}
             value="{{this.model.vendor.key}}" readonly />
           <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>Toon</AuButton>
+          <AuButton {{on 'click' (fn this.copyToClipboard this.model.vendor.key)}} @skin="secondary">Kopieer</AuButton>
         </p>
       </c.content>
     </AuCard>
