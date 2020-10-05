@@ -1,7 +1,7 @@
-<div class="au-o-body-container au-o-box">
-  <div class="au-u-margin-top">
+<div class="au-o-body-container au-o-box au-o-layout">
+  <div class="au-u-margin-top au-u-margin-bottom">
 
-    <AuHeading @level="1" @skin="2">
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">
       Externe software leveranciers
     </AuHeading>
 
@@ -10,8 +10,8 @@
       <t.content as |c|>
         <c.header>
           <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label="Naam" @class="data-table__header-title" />
-          <AuDataTableThSortable @field="uri" @currentSorting={{sort}} @label="URI" @class="data-table__header-title" />
-          <th> aanpassen </th>
+          <th> URI </th>
+          <th> Aanpassen </th>
         </c.header>
         <c.body as |vendor|>
           <td>
