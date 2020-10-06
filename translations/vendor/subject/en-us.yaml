@@ -7,6 +7,10 @@ card:
 table:
   head-1: Access rights
   button-1: Add
+  not-found: No administrative units assigned.
+  r1: Administrative unit
+  r2: Type
+  r3: Action
 modal:
   head-1: Add administrative unit
   head-2: Search for an administrative unit

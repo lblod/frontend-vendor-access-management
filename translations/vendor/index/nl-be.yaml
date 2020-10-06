@@ -4,4 +4,5 @@ main:
     not-found: Geen leveranciers gevonden.
     r1: Naam
     r2: URI
-    r3: Aanpassen
+    r3: Actie
+    button-1: Aanpassen

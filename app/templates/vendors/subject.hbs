@@ -39,13 +39,13 @@
       </AuToolbarGroup>
     </AuToolbar>
     <AuDataTable @content={{this.model.vendor.canActOnBehalfOf}} @fields="Vendors"
-      @noDataMessage="Geen vendors gevonden" @sort={{sort}} @size={{this.size}} @page={{this.page}}
-      @isLoading={{isLoading}} as |t|>
-      <t.content as |c|>
+      @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{sort}} @size={{this.size}} @page={{this.page}}
+      @isLoading={{isLoading}} as |f|>
+      <f.content as |c|>
         <c.header>
-          <th class="data-table__header-title u-hidden--mobile">Bestuurseenheid</th>
-          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Type</th>
-          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">Actie</th>
+          <th class="data-table__header-title u-hidden--mobile">{{t 'vendor.subject.table.r1'}}</th>
+          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.r2'}}</th>
+          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.r3'}}</th>
         </c.header>
         <c.body as |bestuurseenheid|>
           <td>
@@ -59,6 +59,6 @@
               Delete</AuButton>
           </td>
         </c.body>
-      </t.content>
+      </f.content>
     </AuDataTable>
 </div>

@@ -7,6 +7,10 @@ card:
 table:
   head-1: Toegangsrechten
   button-1: Toevoegen
+  not-found: Geen bestuurseenheden aangewezen.
+  r1: Bestuurseenheid
+  r2: Type
+  r3: Actie
 modal:
   head-1: Bestuurseenheid Toevoegen
   head-2: Zoek een Bestuurseenheid

@@ -4,4 +4,5 @@ table:
   not-found: No vendors found.
   r1: Name
   r2: URI
-  r3: Modify
+  r3: Action
+  button-1: Modify

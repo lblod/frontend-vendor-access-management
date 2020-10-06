@@ -6,12 +6,12 @@
     </AuHeading>
 
     <AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{this.sort}}
-      @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
-      <t.content as |c|>
+      @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |f|>
+      <f.content as |c|>
         <c.header>
-          <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label="naam" @class="data-table__header-title" />
-          <th>URI</th>
-          <th>Aanpassen</th>
+          <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label={{t 'vendor.index.table.r1'}} @class="data-table__header-title" />
+          <th>{{t 'vendor.index.table.r2'}}</th>
+          <th>{{t 'vendor.index.table.r3'}}</th>
         </c.header>
         <c.body as |vendor|>
           <td>
@@ -21,10 +21,10 @@
             {{vendor.uri}}
           </td>
           <td>
-            <LinkTo @route="vendors.subject" @model={{vendor.id}}>Edit</LinkTo>
+            <LinkTo @route="vendors.subject" @model={{vendor.id}}>{{t 'vendor.index.table.button-1'}}</LinkTo>
           </td>
         </c.body>
-      </t.content>
+      </f.content>
     </AuDataTable>
   </div>
 </div>
