@@ -1,0 +1,7 @@
+main:
+  head-1: Software vendors
+table:
+  not-found: No vendors found.
+  r1: Name
+  r2: URI
+  r3: Modify

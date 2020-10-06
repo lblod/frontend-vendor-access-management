@@ -1,0 +1,14 @@
+main:
+  head-1: Wijzig toegankelijkheid
+card:
+  head-1: API sleutel
+  button-1: Toon
+  button-2: kopieer
+table:
+  head-1: Toegangsrechten
+  button-1: Toevoegen
+modal:
+  head-1: Bestuurseenheid Toevoegen
+  head-2: Zoek een Bestuurseenheid
+  head-3: Lijst
+  button-1: Opslaan
