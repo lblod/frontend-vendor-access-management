@@ -7,50 +7,45 @@ import { A } from '@ember/array';
  
 
 export default class VendorsSubjectController extends Controller {
-  @tracked sort = "name"
-  @tracked page = 0
-  @tracked size = 10
-  @tracked bestuurseenhedenLijst = A([])
+  @tracked sort = "name";
+  @tracked page = 0;
+  @tracked size = 10;
+  @tracked bestuurseenhedenLijst = A([]);
 
   @action async patchVendor(bestuurseenheid, vendor, todo){
-    // Get vendor, bestuurseenheid & relationship array
-    let targetVendor = this.store.peekRecord('vendor', vendor.id)
+    let targetVendor = this.store.peekRecord('vendor', vendor.id);
+    let relationship = await targetVendor.canActOnBehalfOf;
 
-    let relationship = await targetVendor.canActOnBehalfOf
-
-    // Action to be performed based on argument
     if (todo == "delete"){
-      let targetBestuurseenheid = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id)
-      relationship.removeObject(targetBestuurseenheid)
-    }
+      let targetBestuurseenheid = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id);
+      relationship.removeObject(targetBestuurseenheid);
+    };
 
     if (todo == "add") {
-      relationship.pushObjects(this.bestuurseenhedenLijst)
-    }
+      relationship.pushObjects(this.bestuurseenhedenLijst);
+    };
     
-    // PATCH /
-    targetVendor.save()
-    this.bestuurseenhedenLijst = A([])
+    targetVendor.save();
+    this.bestuurseenhedenLijst = A([]);
   }
 
   @(task(function* (term) {
-    // yield timeout(250);
     let queryParams = {'filter[naam]': term};
     return this.store.query('bestuurseenheid', queryParams);
   })) searchBestuursType;
 
   @action async appendBestuurseenheid(eenheid){
-    let targetBestuurseenheid = await this.store.peekRecord('bestuurseenheid', eenheid.id)
-    this.bestuurseenhedenLijst.pushObject(targetBestuurseenheid)
-  }
+    let targetBestuurseenheid = await this.store.peekRecord('bestuurseenheid', eenheid.id);
+    this.bestuurseenhedenLijst.pushObject(targetBestuurseenheid);
+  };
 
   @action removeBestuurseenheid(eenheid){
-    this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid)
-  }
+    this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid);
+  };
 
   @action copyToClipboard(key){
-    navigator.clipboard.writeText(key)
-  }
+    navigator.clipboard.writeText(key);
+  };
 
 
 
