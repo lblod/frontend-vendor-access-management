@@ -1,5 +1,5 @@
 <div class="au-o-body-container au-o-box au-o-layout au-u-margin-top au-u-margin-bottom">
-    <AuHeading class="au-o-region">Wijzig toegankelijkheid</AuHeading>
+    <AuHeading class="au-o-region">{{t 'vendor.subject.main.head-1'}}</AuHeading>
 
     <AuCard @flex="true" class="au-u-margin-bottom" as |c|>
       <c.header @badgeSkin="brand" @badgeIcon="users">
@@ -9,22 +9,22 @@
       </c.header>
       <c.content>
         <div class="au-o-box">
-          <AuLabel for="input-regular" class="au-u-bold">API sleutel </AuLabel>
+          <AuLabel for="input-regular" class="au-u-bold">{{t 'vendor.subject.card.head-1'}}</AuLabel>
           <AuInput id="input-regular" type={{if this.hiddenKeyState "text" "password"}}
             value="{{this.model.vendor.key}}" readonly />
-          <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>Toon</AuButton>
-          <AuButton {{on 'click' (fn this.copyToClipboard this.model.vendor.key)}} @skin="secondary">Kopieer</AuButton>
+          <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>{{t 'vendor.subject.card.button-1'}}</AuButton>
+          <AuButton {{on 'click' (fn this.copyToClipboard this.model.vendor.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
         </div>
       </c.content>
     </AuCard>
     <AuToolbar class="au-o-region">
       <AuToolbarGroup>
 
-        <AuHeading @skin='3'>Toegangsrechten</AuHeading>
+        <AuHeading @skin='3'>{{t 'vendor.subject.table.head-1'}}</AuHeading>
 
       </AuToolbarGroup>
       <AuToolbarGroup>
-        <AuModal @buttonTitle="Toevoegen" @modalTitle="Bestuurseenheid toevoegen">
+        <AuModal @buttonTitle={{t 'vendor.subject.table.button-1'}} @modalTitle="{{t 'vendor.subject.modal.head-1'}}">
           <AuModalBody>
             <BestuurseenheidToevoegen @searchTask={{this.searchBestuursType}}
               @onListBestuurseenheden={{this.listBestuurseenheden}}
@@ -33,7 +33,7 @@
               @removeBestuurseenheid={{this.removeBestuurseenheid}} />
           </AuModalBody>
           <AuModalFooter>
-            <AuButton {{ on 'click' (fn this.patchVendor null this.model.vendor "add")}}>Opslaan</AuButton>
+            <AuButton {{ on 'click' (fn this.patchVendor null this.model.vendor "add")}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
           </AuModalFooter>
         </AuModal>
       </AuToolbarGroup>

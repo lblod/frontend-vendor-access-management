@@ -1,20 +1,20 @@
-<AuContentHeader @titlePartOne="Vlaanderen" @titlePartTwo="Software leveranciers" @pictureSize="large">
+<AuContentHeader @titlePartOne="{{t 'index.banner.head-1'}}" @titlePartTwo="{{t 'index.banner.head-2'}}" @pictureSize="large">
   <img sizes="50vw" src="/assets/images/loket-header-1600-85a5251e74ef6ac8491b2f228d2c90da.jpg" srcset="/assets/images/banner-bruges-320.jpg 320w, /assets/images/banner-bruges-1024.jpg 1024w, /assets/images/banner-bruges-1600.jpg 1600w" alt="Foto van een stad met een kanaal en huizen.">
 </AuContentHeader>
 
 <div class="au-o-layout">
   <div class="au-o-region-large">
-    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom" >Bekijk de lijst met software leveranciers </AuHeading>
-    <p class="au-u-margin-bottom-large">Lijst van alle software leveranciers.</p>
+    <AuHeading @level="1" @skin="2" class="au-u-margin-bottom" >{{t 'index.main.head-1'}} </AuHeading>
+    <p class="au-u-margin-bottom-large">{{t 'index.main.sub-1'}}</p>
 
     {{#if isLoggedIn}}
       <AuLink @linkRoute="vendors" @icon="user-fill" @iconAlignment="left" class="au-u-margin-bottom">
-        Bekijk alle leveranciers.
+        {{t 'index.main.link-1'}}
       </AuLink>
     {{else}}
-        <AuButton @icon="user" {{on 'click' this.login}}>Inloggen</AuButton>
+        <AuButton @icon="user" {{on 'click' this.login}}>{{t 'index.main.login'}}</AuButton>
     {{/if}}
    
   </div>
-   <p>Mail naar <a class="au-c-link" href="mailto:LoketLokaalBestuur@vlaanderen.be">LoketLokaalBestuur@vlaanderen.be</a> voor meer informatie.</p>
+   <p>{{t 'index.main.info.l1'}} <a class="au-c-link" href="mailto:LoketLokaalBestuur@vlaanderen.be">LoketLokaalBestuur@vlaanderen.be</a> {{t 'index.main.info.l2'}}</p>
 </div>

@@ -2,16 +2,16 @@
   <div class="au-u-margin-top au-u-margin-bottom">
 
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">
-      Externe software leveranciers
+      {{t 'vendor.index.main.head-1'}}
     </AuHeading>
 
     <AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{this.sort}}
       @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |t|>
       <t.content as |c|>
         <c.header>
-          <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label="Naam" @class="data-table__header-title" />
-          <th> URI </th>
-          <th> Aanpassen </th>
+          <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label="naam" @class="data-table__header-title" />
+          <th>URI</th>
+          <th>Aanpassen</th>
         </c.header>
         <c.body as |vendor|>
           <td>
