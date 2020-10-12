@@ -5,15 +5,15 @@
     <div id="ember-test"></div>
   <AuCard @flex="true" as |c|>
     <c.header>
-   
+
       <AuHeading @level="2" @skin="4" id="describe-search">
         {{t 'vendor.subject.modal.head-2'}}
       </AuHeading>
     </c.header>
     <c.content>
-            
+
       <div style="position: relative; overflow: hidden;">
-        <PowerSelect 
+        <PowerSelect
           @ariaLabel="Zoekbalk"
           @search={{perform @searchTask}}
           @allowClear={{true}}
