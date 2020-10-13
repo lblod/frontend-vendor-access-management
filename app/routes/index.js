@@ -3,8 +3,8 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default class IndexRoute extends Route.extend(AuthenticatedRouteMixin) {
 
-  beforeModel(){
-    super.beforeModel(...arguments);
+  beforeModel() {
     this.transitionTo('vendors');
+    super.beforeModel(...arguments);
   }
 }

@@ -48,10 +48,8 @@ export default class CurrentSessionService extends Service {
         groupContent: group
       });
 
-      // TODO: figure out how this works and implement it for this use case
-      // this.canReadVlabel = this.canAccess('ABBDatabankToezicht-DatabankToezichtVLABEL');
-      // this.canRead = this.canAccess('ABBDatabankToezicht-DatabankToezichtLezer') || this.canAccess('ABBDatabankToezicht-DatabankToezichtEditeur');
-      // this.canWrite = this.canAccess('ABBDatabankToezicht-DatabankToezichtEditeur');
+      this.canManageVendors = this.canAccess('LoketLB-vendorManagementGebruiker');
+      return this;
     }
   }
 

@@ -4,11 +4,13 @@ import { warn } from 'ember-debug';
 import { inject as service } from '@ember/service';
 
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import { tracked } from '@glimmer/tracking';
 
 
 export default class ApplicationRoute extends Route.extend(ApplicationRouteMixin) {
 
   @service currentSession;
+  @tracked error;
 
   beforeModel() {
     return this._loadCurrentSession();
@@ -39,10 +41,15 @@ export default class ApplicationRoute extends Route.extend(ApplicationRouteMixin
     this.transitionTo('login');
   }
 
-  _loadCurrentSession() {
-    return this.currentSession.load().catch((e) => {
+  async _loadCurrentSession() {
+    try {
+      const session = await this.currentSession.load();
+      if(!session.canManageVendors)
+        throw Error("This account can NOT manage vendors");
+      return session;
+    } catch (e) {
       warn(e, { id: 'session-load-failure' });
-      this.session.invalidate();
-    });
+      await this.session.invalidate();
+    }
   }
 }
