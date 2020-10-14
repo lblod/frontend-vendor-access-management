@@ -12,7 +12,7 @@ export default class VendorsSubjectController extends Controller {
 
   @action
   async patchVendor(bestuurseenheid, vendor, todo){
-    let targetVendor = this.store.peekRecord('vendor', vendor.id);
+    let targetVendor = vendor;
     let relationship = await targetVendor.canActOnBehalfOf;
 
     if (todo == "delete"){
