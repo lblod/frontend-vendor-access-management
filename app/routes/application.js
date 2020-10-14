@@ -51,5 +51,6 @@ export default class ApplicationRoute extends Route.extend(ApplicationRouteMixin
       warn(e, { id: 'session-load-failure' });
       await this.session.invalidate();
     }
+    return null;
   }
 }
