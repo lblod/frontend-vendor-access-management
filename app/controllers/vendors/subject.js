@@ -4,15 +4,14 @@ import { action } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { A } from '@ember/array';
 
- 
-
 export default class VendorsSubjectController extends Controller {
   @tracked sort = "name";
   @tracked page = 0;
   @tracked size = 10;
   @tracked bestuurseenhedenLijst = A([]);
 
-  @action async patchVendor(bestuurseenheid, vendor, todo){
+  @action
+  async patchVendor(bestuurseenheid, vendor, todo){
     let targetVendor = this.store.peekRecord('vendor', vendor.id);
     let relationship = await targetVendor.canActOnBehalfOf;
 
@@ -24,7 +23,7 @@ export default class VendorsSubjectController extends Controller {
     if (todo == "add") {
       relationship.pushObjects(this.bestuurseenhedenLijst);
     };
-    
+
     targetVendor.save();
     this.bestuurseenhedenLijst = A([]);
   }
@@ -34,16 +33,19 @@ export default class VendorsSubjectController extends Controller {
     return this.store.query('bestuurseenheid', queryParams);
   })) searchBestuursType;
 
-  @action async appendBestuurseenheid(eenheid){
+  @action
+  async appendBestuurseenheid(eenheid){
     let targetBestuurseenheid = await this.store.peekRecord('bestuurseenheid', eenheid.id);
     this.bestuurseenhedenLijst.pushObject(targetBestuurseenheid);
   };
 
-  @action removeBestuurseenheid(eenheid){
+  @action
+  removeBestuurseenheid(eenheid){
     this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid);
   };
 
-  @action copyToClipboard(key){
+  @action
+  copyToClipboard(key){
     navigator.clipboard.writeText(key);
   };
 
