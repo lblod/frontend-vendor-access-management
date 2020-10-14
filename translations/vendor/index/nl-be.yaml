@@ -1,8 +1,8 @@
 main:
   head-1: Software leveranciers
-  table:
-    not-found: Geen leveranciers gevonden.
-    r1: Naam
-    r2: URI
-    r3: Actie
-    button-1: Aanpassen
+table:
+  not-found: Geen leveranciers gevonden.
+  r1: Naam
+  r2: URI
+  r3: Actie
+  button-1: Aanpassen

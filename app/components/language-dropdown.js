@@ -5,8 +5,9 @@ import { action } from '@ember/object';
 export default class LanguageDropdownComponent extends Component {
   @service("intl") intl;
 
-  @action changeLanguage(lang){
-    console.log(this.intl.set("locale", lang))
+  @action
+  changeLanguage(lang){
+    console.log(this.intl.set("locale", lang));
 
   }
 }

@@ -1,0 +1,28 @@
+<main id="content">
+  <AuContentHeader @titlePartOne="Vlaanderen" @titlePartTwo="is lokaal bestuur">
+    <img sizes="50vw" src="/assets/images/loket-header-1600.jpg"
+         srcset="/assets/images/loket-header-320.jpg 320w, /assets/images/loket-header-1024.jpg 1024w, /assets/images/loket-header-1600.jpg 1600w"
+         alt="Foto van een laptop met daarop het vlaanderen logo.">
+  </AuContentHeader>
+
+  <div class="au-o-region-large">
+    <div class="au-o-layout">
+      {{#mock-login as |login|}}
+        {{#if queryStore.isRunning}}
+          <AuLoader @size="small"/>
+        {{else}}
+          {{#if login.errorMessage}}
+            <AuAlert @alertIcon="alert-triangle" @alertTitle={{login.errorMessage}} @alertskin="warning"/>
+          {{/if}}
+          {{#login.each-account accounts=model as |account|}}
+            <div class="au-o-box au-o-box--small au-c-card au-u-margin-bottom-small">
+              <p>
+                {{account.gebruiker.voornaam}} {{account.gebruiker.achternaam}}
+              </p>
+            </div>
+          {{/login.each-account}}
+        {{/if}}
+      {{/mock-login}}
+    </div>
+  </div>
+</main>

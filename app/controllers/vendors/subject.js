@@ -1,10 +1,8 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 import { A } from '@ember/array';
-
- 
 
 export default class VendorsSubjectController extends Controller {
   @tracked sort = "name";
@@ -12,8 +10,9 @@ export default class VendorsSubjectController extends Controller {
   @tracked size = 10;
   @tracked bestuurseenhedenLijst = A([]);
 
-  @action async patchVendor(bestuurseenheid, vendor, todo){
-    let targetVendor = this.store.peekRecord('vendor', vendor.id);
+  @action
+  async patchVendor(bestuurseenheid, vendor, todo){
+    let targetVendor = vendor;
     let relationship = await targetVendor.canActOnBehalfOf;
 
     if (todo == "delete"){
@@ -24,26 +23,30 @@ export default class VendorsSubjectController extends Controller {
     if (todo == "add") {
       relationship.pushObjects(this.bestuurseenhedenLijst);
     };
-    
+
     targetVendor.save();
     this.bestuurseenhedenLijst = A([]);
   }
 
-  @(task(function* (term) {
+  @task
+  *searchBestuursType(term){
     let queryParams = {'filter[naam]': term};
     return this.store.query('bestuurseenheid', queryParams);
-  })) searchBestuursType;
+  }
 
-  @action async appendBestuurseenheid(eenheid){
+  @action
+  async appendBestuurseenheid(eenheid){
     let targetBestuurseenheid = await this.store.peekRecord('bestuurseenheid', eenheid.id);
     this.bestuurseenhedenLijst.pushObject(targetBestuurseenheid);
   };
 
-  @action removeBestuurseenheid(eenheid){
+  @action
+  removeBestuurseenheid(eenheid){
     this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid);
   };
 
-  @action copyToClipboard(key){
+  @action
+  copyToClipboard(key){
     navigator.clipboard.writeText(key);
   };
 

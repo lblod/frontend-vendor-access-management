@@ -1,19 +1,14 @@
-
-
-
-  <div class="au-o-flow">
-    <div id="ember-test"></div>
+<div class="au-o-flow">
+  <div id="ember-test"></div>
   <AuCard @flex="true" as |c|>
     <c.header>
-   
       <AuHeading @level="2" @skin="4" id="describe-search">
         {{t 'vendor.subject.modal.head-2'}}
       </AuHeading>
     </c.header>
     <c.content>
-            
       <div style="position: relative; overflow: hidden;">
-        <PowerSelect 
+        <PowerSelect
           @ariaLabel="Zoekbalk"
           @search={{perform @searchTask}}
           @allowClear={{true}}
@@ -39,7 +34,6 @@
     </c.header>
 
     <c.content>
-
         <div class=""  {{auto-focus '.au-c-button' }}>
           {{#each @bestuurseenhedenLijst as |eenheid|}}
             <AuPill class="au-u-margin-bottom-small">
@@ -49,8 +43,4 @@
         </div>
     </c.content>
   </AuCard>
-
-
 </div>
-
-
