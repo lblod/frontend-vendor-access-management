@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { task } from 'ember-concurrency';
+import { task } from 'ember-concurrency-decorators';
 import { A } from '@ember/array';
 
 export default class VendorsSubjectController extends Controller {
@@ -28,10 +28,11 @@ export default class VendorsSubjectController extends Controller {
     this.bestuurseenhedenLijst = A([]);
   }
 
-  @(task(function* (term) {
+  @task
+  *searchBestuursType(term){
     let queryParams = {'filter[naam]': term};
     return this.store.query('bestuurseenheid', queryParams);
-  })) searchBestuursType;
+  }
 
   @action
   async appendBestuurseenheid(eenheid){
