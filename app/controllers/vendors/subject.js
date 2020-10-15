@@ -5,9 +5,9 @@ import { task } from 'ember-concurrency-decorators';
 import { A } from '@ember/array';
 
 export default class VendorsSubjectController extends Controller {
-  @tracked sort = "name";
-  @tracked page = 0;
-  @tracked size = 10;
+  sort = "name";
+  page = 0;
+  size = 20;
   @tracked bestuurseenhedenLijst = A([]);
 
   @action

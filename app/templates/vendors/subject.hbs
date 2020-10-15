@@ -4,16 +4,18 @@
     <AuCard @flex="true" class="au-u-margin-bottom" as |c|>
       <c.header @badgeSkin="brand" @badgeIcon="users">
         <AuHeading @level="2" @skin="4">
-          {{this.model.vendor.name}}  ({{this.model.vendor.uri}})
+          {{this.model.firstObject.name}} ({{this.model.firstObject.uri}})
         </AuHeading>
+
+
       </c.header>
       <c.content>
         <div class="au-o-box">
           <AuLabel for="input-regular" class="au-u-bold">{{t 'vendor.subject.card.head-1'}}</AuLabel>
           <AuInput id="input-regular" type={{if this.hiddenKeyState "text" "password"}}
-            value="{{this.model.vendor.key}}" readonly />
+            value="{{this.model.firstObject.key}}" readonly />
           <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>{{t 'vendor.subject.card.button-1'}}</AuButton>
-          <AuButton {{on 'click' (fn this.copyToClipboard this.model.vendor.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
+          <AuButton {{on 'click' (fn this.copyToClipboard this.model.firstObject.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
         </div>
       </c.content>
     </AuCard>
@@ -33,13 +35,13 @@
               @removeBestuurseenheid={{this.removeBestuurseenheid}} />
           </AuModalBody>
           <AuModalFooter>
-            <AuButton {{ on 'click' (fn this.addToList this.model.vendor )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
+            <AuButton {{ on 'click' (fn this.addToList this.model.firstObject )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
           </AuModalFooter>
         </AuModal>
       </AuToolbarGroup>
     </AuToolbar>
-    <AuDataTable @content={{this.model.vendor.canActOnBehalfOf}} @fields="Vendors"
-      @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{sort}} @size={{this.size}} @page={{this.page}}
+    <AuDataTable @content={{this.model.firstObject.canActOnBehalfOf}} @fields="Vendors"
+      @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
       @isLoading={{isLoading}} as |f|>
       <f.content as |c|>
         <c.header>
@@ -55,7 +57,7 @@
             {{bestuurseenheid.classificatie.label}}
           </td>
           <td>
-            <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.model.vendor)}}>
+            <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.model.firstObject)}}>
               Delete</AuButton>
           </td>
         </c.body>
