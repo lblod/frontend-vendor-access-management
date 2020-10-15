@@ -7,5 +7,5 @@ main:
   login: Inloggen
   link-1: Bekijk alle leveranciers.
   info:
-    l1: Mail naar
-    l2: voor meer informatie.
+    line-1: Mail naar
+    line-2: voor meer informatie.

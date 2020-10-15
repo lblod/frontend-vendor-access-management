@@ -2,7 +2,7 @@ main:
   head-1: Software vendors
 table:
   not-found: No vendors found.
-  r1: Name
-  r2: URI
-  r3: Action
+  row-1: Name
+  row-2: URI
+  row-3: Action
   button-1: Modify

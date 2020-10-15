@@ -7,5 +7,5 @@ main:
   login: login
   link-1: View all suppliers
   info:
-    l1: Send an e-mail to
-    l2: for more information.
+    line-1: Send an e-mail to
+    line-2: for more information.
