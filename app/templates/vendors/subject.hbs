@@ -33,7 +33,7 @@
               @removeBestuurseenheid={{this.removeBestuurseenheid}} />
           </AuModalBody>
           <AuModalFooter>
-            <AuButton {{ on 'click' (fn this.patchVendor null this.model.vendor "add")}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
+            <AuButton {{ on 'click' (fn this.addToList this.model.vendor )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
           </AuModalFooter>
         </AuModal>
       </AuToolbarGroup>
@@ -55,7 +55,7 @@
             {{bestuurseenheid.classificatie.label}}
           </td>
           <td>
-            <AuButton @alert="true" {{ on 'click' (fn this.patchVendor bestuurseenheid this.model.vendor "delete")}}>
+            <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.model.vendor)}}>
               Delete</AuButton>
           </td>
         </c.body>

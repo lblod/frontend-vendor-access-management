@@ -11,21 +11,27 @@ export default class VendorsSubjectController extends Controller {
   @tracked bestuurseenhedenLijst = A([]);
 
   @action
-  async patchVendor(bestuurseenheid, vendor, todo){
+  async addToList(vendor){
     let targetVendor = vendor;
     let relationship = await targetVendor.canActOnBehalfOf;
 
-    if (todo == "delete"){
-      let targetBestuurseenheid = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id);
-      relationship.removeObject(targetBestuurseenheid);
-    };
-
-    if (todo == "add") {
-      relationship.pushObjects(this.bestuurseenhedenLijst);
-    };
+    relationship.pushObjects(this.bestuurseenhedenLijst);
 
     targetVendor.save();
     this.bestuurseenhedenLijst = A([]);
+
+  }
+
+  @action 
+  async removeFromList(bestuurseenheid, vendor){
+  let targetVendor = vendor;
+  let relationship = await targetVendor.canActOnBehalfOf;
+
+  let targetBestuurseenheid = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id);
+  relationship.removeObject(targetBestuurseenheid);
+
+  targetVendor.save();
+  this.bestuurseenhedenLijst = A([]);
   }
 
   @task
