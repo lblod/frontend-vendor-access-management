@@ -4,12 +4,22 @@ import { action } from '@ember/object';
 import { task } from 'ember-concurrency-decorators';
 import { A } from '@ember/array';
 
-export default class VendorsSubjectController extends Controller {
+
+export default class VendorsDetailsController extends Controller {
   page = 0;
   size = 20;
   @tracked bestuurseenhedenLijst = A([]);
 
+  @action
+  async addToList(vendor){
+    let targetVendor = vendor;
+    let relationship = await targetVendor.canActOnBehalfOf;
 
+    relationship.pushObjects(this.bestuurseenhedenLijst);
+    targetVendor.save();
+    
+    this.bestuurseenhedenLijst = A([]);
+  }
 
   @task
   *searchBestuursType(term){
@@ -32,7 +42,4 @@ export default class VendorsSubjectController extends Controller {
   copyToClipboard(key){
     navigator.clipboard.writeText(key);
   };
-
-
-
 }
