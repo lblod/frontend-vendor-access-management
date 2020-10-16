@@ -12,12 +12,10 @@ export default class VendorsDetailsController extends Controller {
 
   @action
   async addToList(vendor){
-    let targetVendor = vendor;
-    let relationship = await targetVendor.canActOnBehalfOf;
-
-    relationship.pushObjects(this.bestuurseenhedenLijst);
-    targetVendor.save();
+    let targetVendor = this.store.peekRecord("vendor", vendor.id);
+    await targetVendor.canActOnBehalfOf.pushObjects(this.bestuurseenhedenLijst);
     
+    targetVendor.save();
     this.bestuurseenhedenLijst = A([]);
   }
 
