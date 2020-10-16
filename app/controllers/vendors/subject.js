@@ -5,34 +5,11 @@ import { task } from 'ember-concurrency-decorators';
 import { A } from '@ember/array';
 
 export default class VendorsSubjectController extends Controller {
-  sort = "name";
   page = 0;
   size = 20;
   @tracked bestuurseenhedenLijst = A([]);
 
-  @action
-  async addToList(vendor){
-    let targetVendor = vendor;
-    let relationship = await targetVendor.canActOnBehalfOf;
 
-    relationship.pushObjects(this.bestuurseenhedenLijst);
-
-    targetVendor.save();
-    this.bestuurseenhedenLijst = A([]);
-
-  }
-
-  @action 
-  async removeFromList(bestuurseenheid, vendor){
-  let targetVendor = vendor;
-  let relationship = await targetVendor.canActOnBehalfOf;
-
-  let targetBestuurseenheid = this.store.peekRecord('bestuurseenheid', bestuurseenheid.id);
-  relationship.removeObject(targetBestuurseenheid);
-
-  targetVendor.save();
-  this.bestuurseenhedenLijst = A([]);
-  }
 
   @task
   *searchBestuursType(term){
