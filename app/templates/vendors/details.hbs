@@ -4,7 +4,7 @@
     <AuCard @flex="true" class="au-u-margin-bottom" as |c|>
       <c.header @badgeSkin="brand" @badgeIcon="users">
         <AuHeading @level="2" @skin="4">
-          {{this.model.firstObject.name}} ({{this.model.firstObject.uri}})
+          {{this.model.name}} ({{this.model.uri}})
         </AuHeading>
 
 
@@ -13,9 +13,9 @@
         <div class="au-o-box">
           <AuLabel for="input-regular" class="au-u-bold">{{t 'vendor.subject.card.head-1'}}</AuLabel>
           <AuInput id="input-regular" type={{if this.hiddenKeyState "text" "password"}}
-            value="{{this.model.firstObject.key}}" readonly />
+            value="{{this.model.key}}" readonly />
           <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>{{t 'vendor.subject.card.button-1'}}</AuButton>
-          <AuButton {{on 'click' (fn this.copyToClipboard this.model.firstObject.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
+          <AuButton {{on 'click' (fn this.copyToClipboard this.model.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
         </div>
       </c.content>
     </AuCard>
@@ -35,32 +35,10 @@
               @removeBestuurseenheid={{this.removeBestuurseenheid}} />
           </AuModalBody>
           <AuModalFooter>
-            <AuButton {{ on 'click' (fn this.addToList this.model.firstObject )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
+            <AuButton {{ on 'click' ( fn this.addToList this.model )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
           </AuModalFooter>
         </AuModal>
       </AuToolbarGroup>
     </AuToolbar>
-    <AuDataTable @content={{this.model.firstObject.canActOnBehalfOf}} @fields="Vendors"
-      @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
-      @isLoading={{isLoading}} as |f|>
-      <f.content as |c|>
-        <c.header>
-          <th class="data-table__header-title u-hidden--mobile">{{t 'vendor.subject.table.row-1'}}</th>
-          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.row-2'}}</th>
-          <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.row-3'}}</th>
-        </c.header>
-        <c.body as |bestuurseenheid|>
-          <td>
-            {{bestuurseenheid.naam}}
-          </td>
-          <td>
-            {{bestuurseenheid.classificatie.label}}
-          </td>
-          <td>
-            <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.model.firstObject)}}>
-              Delete</AuButton>
-          </td>
-        </c.body>
-      </f.content>
-    </AuDataTable>
+        {{outlet}}
 </div>
