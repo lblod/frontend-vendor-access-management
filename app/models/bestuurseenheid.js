@@ -5,5 +5,5 @@ export default class BestuurseenheidModel extends Model {
   @attr("string") naam;
   @attr('string') alternatieveNaam;
   @belongsTo('bestuurseenheid-classificatie-code') classificatie;
-  @hasMany('vendor') vendors;
+  @hasMany('vendor', { inverse: "canActOnBehalfOf"} ) vendors;
 }
