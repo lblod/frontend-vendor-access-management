@@ -4,5 +4,5 @@ export default class VendorModel extends Model {
   @attr('string') name;
   @attr('string') uri;
   @attr('string') key;
-  @hasMany('bestuurseenheid') canActOnBehalfOf;
+  @hasMany('bestuurseenheid', { inverse: null }) canActOnBehalfOf;
 }
