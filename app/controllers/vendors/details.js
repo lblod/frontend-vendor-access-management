@@ -6,16 +6,15 @@ import { A } from '@ember/array';
 
 
 export default class VendorsDetailsController extends Controller {
+  sort = "naam";
   page = 0;
   size = 20;
   @tracked bestuurseenhedenLijst = A([]);
 
   @action
   async addToList(vendor){
-    let targetVendor = this.store.peekRecord("vendor", vendor.id);
-    await targetVendor.canActOnBehalfOf.pushObjects(this.bestuurseenhedenLijst);
-    
-    targetVendor.save();
+    (await vendor.canActOnBehalfOf).pushObjects(this.bestuurseenhedenLijst);
+    await vendor.save();
     this.bestuurseenhedenLijst = A([]);
     this.send('reloadModel');
   }
@@ -28,8 +27,7 @@ export default class VendorsDetailsController extends Controller {
 
   @action
   async appendBestuurseenheid(eenheid){
-    let targetBestuurseenheid = await this.store.peekRecord('bestuurseenheid', eenheid.id);
-    this.bestuurseenhedenLijst.pushObject(targetBestuurseenheid);
+    this.bestuurseenhedenLijst.pushObject(eenheid);
   };
 
   @action
