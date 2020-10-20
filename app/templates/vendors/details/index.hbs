@@ -1,4 +1,4 @@
-  <AuDataTable @content={{this.model.firstObject.canActOnBehalfOf}} @fields="Vendors"
+  <AuDataTable @content={{this.model}} @fields="Vendors"
     @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
     @isLoading={{isLoading}} as |f|>
     <f.content as |c|>
@@ -15,7 +15,7 @@
           {{bestuurseenheid.classificatie.label}}
         </td>
         <td>
-          <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.model.firstObject)}}>
+          <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid vendor)}}>
             Delete</AuButton>
         </td>
       </c.body>
