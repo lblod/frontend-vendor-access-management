@@ -8,5 +8,9 @@ export default Ember.Route.extend(DataTableRouteMixin, {
       include: 'can-act-on-behalf-of',
      'filter[id]': this.modelFor('vendors/details').id
     };
+  actions: {
+    reloadModel(){
+      this.refresh();
+    }
   }
 });
