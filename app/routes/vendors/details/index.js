@@ -9,6 +9,13 @@ export default Ember.Route.extend(DataTableRouteMixin, {
       include: 'vendors',
      'filter[vendors][:id:]': this.modelFor('vendors/details').id
     };
+  },
+
+  setupController(controller, model){
+    this._super(controller, model);
+    controller.set('vendor', this.modelFor('vendors/details'));
+  },
+
   actions: {
     reloadModel(){
       this.refresh();
