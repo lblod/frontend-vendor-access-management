@@ -17,6 +17,7 @@ export default class VendorsDetailsController extends Controller {
     
     targetVendor.save();
     this.bestuurseenhedenLijst = A([]);
+    this.send('reloadModel');
   }
 
   @task
