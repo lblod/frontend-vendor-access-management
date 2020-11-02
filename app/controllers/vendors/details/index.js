@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { getOwner } from '@ember/application';
 
 export default class VendorsSubjectController extends Controller {
+  sort = "naam";
   page = 0;
   size = 20;
 
