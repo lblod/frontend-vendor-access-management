@@ -3,8 +3,8 @@
     @isLoading={{isLoading}} as |f|>
     <f.content as |c|>
       <c.header>
-        <th class="data-table__header-title u-hidden--mobile">{{t 'vendor.subject.table.row-1'}}</th>
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.row-2'}}</th>
+         <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
+         <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
         <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.row-3'}}</th>
       </c.header>
       <c.body as |bestuurseenheid|>
