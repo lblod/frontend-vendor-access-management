@@ -6,9 +6,6 @@ import { A } from '@ember/array';
 
 
 export default class VendorsDetailsController extends Controller {
-  sort = "naam";
-  page = 0;
-  size = 20;
   @tracked bestuurseenhedenLijst = A([]);
 
   @action
