@@ -9,7 +9,7 @@
       @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |f|>
       <f.content as |c|>
         <c.header>
-          <AuDataTableThSortable @field="name" @currentSorting={{sort}} @label={{t 'vendor.index.table.row-1'}} @class="data-table__header-title" />
+          <AuDataTableThSortable @field="name" @currentSorting={{this.sort}} @label={{t 'vendor.index.table.row-1'}} @class="data-table__header-title" />
           <th>{{t 'vendor.index.table.row-2'}}</th>
           <th>{{t 'vendor.index.table.row-3'}}</th>
         </c.header>
