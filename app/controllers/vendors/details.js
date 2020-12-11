@@ -3,16 +3,18 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { task } from 'ember-concurrency-decorators';
 import { A } from '@ember/array';
-
+import { loadAllBestuurseenheidenForVendor } from 'frontend-vendor-access-management/utils/load-relation-utils';
 
 export default class VendorsDetailsController extends Controller {
-  @tracked bestuurseenhedenLijst = A([]);
+  @tracked bestuurseenhedenLijst = [];
 
   @action
   async addToList(vendor){
-    (await vendor.canActOnBehalfOf).pushObjects(this.bestuurseenhedenLijst);
+    const allEenheden = await loadAllBestuurseenheidenForVendor(this.store, vendor);
+    const updatedEenheden = [ ...allEenheden, ...this.bestuurseenhedenLijst];
+    (await vendor.canActOnBehalfOf).setObjects(updatedEenheden);
     await vendor.save();
-    this.bestuurseenhedenLijst = A([]);
+    this.bestuurseenhedenLijst = [];
     this.send('reloadModel');
   }
 

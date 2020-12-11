@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 
 export default class VendorsDetailsRoute extends Route {
   model(params){
-    return this.store.findRecord('vendor',  params.id )
+    return this.store.findRecord('vendor', params.id );
   }
 
   @action
