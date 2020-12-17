@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { getOwner } from '@ember/application';
-import { warn } from 'ember-debug';
+import { warn } from '@ember/debug';
 import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { tracked } from '@glimmer/tracking';
