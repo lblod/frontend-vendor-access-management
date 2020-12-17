@@ -6,7 +6,7 @@
     </AuHeading>
 
     <AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{this.sort}}
-      @size={{this.size}} @page={{this.page}} @isLoading={{isLoading}} as |f|>
+      @size={{this.size}} @page={{this.page}} @isLoading={{this.isLoading}} as |f|>
       <f.content as |c|>
         <c.header>
           <AuDataTableThSortable @field="name" @currentSorting={{this.sort}} @label={{t 'vendor.index.table.row-1'}} @class="data-table__header-title" />
