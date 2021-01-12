@@ -1,6 +1,6 @@
   <AuDataTable @content={{this.model}} @fields="Vendors"
     @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
-    @isLoading={{isLoading}} as |f|>
+    @isLoading={{this.isLoading}} as |f|>
     <f.content as |c|>
       <c.header>
          <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
@@ -15,7 +15,7 @@
           {{bestuurseenheid.classificatie.label}}
         </td>
         <td>
-          <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid vendor)}}>
+          <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.vendor)}}>
             Delete</AuButton>
         </td>
       </c.body>
