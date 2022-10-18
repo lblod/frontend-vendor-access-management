@@ -26,7 +26,7 @@
           }}
           @registerAPI={{this.registerAPI}}
           @onChange={{@appendBestuurseenheid}} as |eenheid|>
-          {{#unless (contains eenheid @bestuurseenhedenLijst) }}
+          {{#unless (includes eenheid @bestuurseenhedenLijst) }}
            {{eenheid.naam}} ({{eenheid.classificatie.label}})
           {{/unless}}
         </PowerSelect>
