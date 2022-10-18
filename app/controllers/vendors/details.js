@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { task } from 'ember-concurrency-decorators';
 
 import { loadAllBestuurseenheidenForVendor } from 'frontend-vendor-access-management/utils/load-relation-utils';
 
@@ -16,13 +15,6 @@ export default class VendorsDetailsController extends Controller {
     await vendor.save();
     this.bestuurseenhedenLijst = [];
     this.send('reloadModel');
-  }
-
-  @task
-  *searchBestuursType(term){
-    let queryParams = {'filter[naam]': term};
-    yield
-    return this.store.query('bestuurseenheid', queryParams);
   }
 
   @action
