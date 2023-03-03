@@ -6,7 +6,7 @@ export default class LoginRoute extends Route {
   @service store;
 
   beforeModel() {
-    if (this.session.isAuthenticated) this.transitionTo('index');
+    this.session.prohibitAuthentication('index');
   }
 
   model() {

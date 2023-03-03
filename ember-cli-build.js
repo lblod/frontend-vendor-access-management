@@ -10,6 +10,9 @@ module.exports = function (defaults) {
         'node_modules/@appuniversum/ember-appuniversum/app/styles',
       ],
     },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    },
     // Add options here
   });
 

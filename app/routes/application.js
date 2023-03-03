@@ -1,43 +1,16 @@
 import Route from '@ember/routing/route';
-import { getOwner } from '@ember/application';
 import { warn } from '@ember/debug';
 import { inject as service } from '@ember/service';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { tracked } from '@glimmer/tracking';
 
-export default class ApplicationRoute extends Route.extend(
-  ApplicationRouteMixin
-) {
+export default class ApplicationRoute extends Route {
   @service currentSession;
+  @service session;
   @tracked error;
 
-  beforeModel() {
-    return this._loadCurrentSession();
-  }
-
-  async sessionAuthenticated() {
+  async beforeModel() {
+    await this.session.setup();
     await this._loadCurrentSession();
-
-    // Since not calling this._super(...arguments) on the first line doesn't work
-    // we copy the implementation ApplicationRouteMixin.sessionAuthenticated here
-    const attemptedTransition = this.session.attemptedTransition;
-    const cookies = getOwner(this).lookup('service:cookies');
-    const redirectTarget = cookies.read('ember_simple_auth-redirectTarget');
-
-    if (attemptedTransition) {
-      attemptedTransition.retry();
-      this.session.attemptedTransition = null;
-    } else if (redirectTarget) {
-      this.transitionTo(redirectTarget);
-      cookies.clear('ember_simple_auth-redirectTarget');
-    } else {
-      this.transitionTo(this.routeAfterAuthentication);
-    }
-    // End of copy from ApplicationRouteMixin.sessionAuthenticated
-  }
-
-  sessionInvalidated() {
-    this.transitionTo('login');
   }
 
   async _loadCurrentSession() {
