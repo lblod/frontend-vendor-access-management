@@ -3,11 +3,10 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class LanguageDropdownComponent extends Component {
-  @service("intl") intl;
+  @service('intl') intl;
 
   @action
-  changeLanguage(lang){
-    console.log(this.intl.set("locale", lang));
-
+  changeLanguage(lang) {
+    console.log(this.intl.set('locale', lang));
   }
 }

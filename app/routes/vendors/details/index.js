@@ -7,18 +7,18 @@ export default Ember.Route.extend(DataTableRouteMixin, {
   mergeQueryOptions() {
     return {
       include: 'vendors',
-     'filter[vendors][:id:]': this.modelFor('vendors/details').id
+      'filter[vendors][:id:]': this.modelFor('vendors/details').id,
     };
   },
 
-  setupController(controller, model){
+  setupController(controller, model) {
     this._super(controller, model);
     controller.set('vendor', this.modelFor('vendors/details'));
   },
 
   actions: {
-    reloadModel(){
+    reloadModel() {
       this.refresh();
-    }
-  }
+    },
+  },
 });

@@ -3,14 +3,17 @@ import { action } from '@ember/object';
 import { loadAllVendorsForEenheid } from 'frontend-vendor-access-management/utils/load-relation-utils';
 
 export default class VendorsSubjectController extends Controller {
-  sort = "naam";
+  sort = 'naam';
   page = 0;
   size = 20;
 
   @action
-  async removeFromList(bestuurseenheid, vendor){
-    const allVendors = await loadAllVendorsForEenheid(this.store, bestuurseenheid);
-    const updatedVendors = allVendors.filter(v => v.id != vendor.id);
+  async removeFromList(bestuurseenheid, vendor) {
+    const allVendors = await loadAllVendorsForEenheid(
+      this.store,
+      bestuurseenheid
+    );
+    const updatedVendors = allVendors.filter((v) => v.id != vendor.id);
     (await bestuurseenheid.vendors).setObjects(updatedVendors);
     await bestuurseenheid.save();
     //We must trigger model(), since the pagination depends on this.

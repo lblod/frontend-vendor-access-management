@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 
 export default class VendorsIndexController extends Controller {
-  sort = "name";
+  sort = 'name';
   page = 0;
   size = 20;
 }

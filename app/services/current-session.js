@@ -30,10 +30,19 @@ export default class CurrentSessionService extends Service {
   async load() {
     if (this.session.isAuthenticated) {
       const session = this.session;
-      const account = await this.store.find('account', get(session, 'data.authenticated.relationships.account.data.id'));
+      const account = await this.store.find(
+        'account',
+        get(session, 'data.authenticated.relationships.account.data.id')
+      );
       const user = await account.gebruiker;
-      const group = await this.store.find('bestuurseenheid', get(session, 'data.authenticated.relationships.group.data.id'));
-      const roles = await get(session, 'data.authenticated.data.attributes.roles');
+      const group = await this.store.find(
+        'bestuurseenheid',
+        get(session, 'data.authenticated.relationships.group.data.id')
+      );
+      const roles = await get(
+        session,
+        'data.authenticated.data.attributes.roles'
+      );
       this._account = account;
       this._user = user;
       this._roles = roles;
@@ -45,10 +54,12 @@ export default class CurrentSessionService extends Service {
         accountContent: account,
         userContent: user,
         rolesContent: roles,
-        groupContent: group
+        groupContent: group,
       });
 
-      this.canManageVendors = this.canAccess('LoketLB-vendorManagementGebruiker');
+      this.canManageVendors = this.canAccess(
+        'LoketLB-vendorManagementGebruiker'
+      );
       return this;
     }
   }
@@ -59,7 +70,7 @@ export default class CurrentSessionService extends Service {
 
   // constructs a task which resolves in the promise
   @task
-  *makePropertyPromise (property) {
+  *makePropertyPromise(property) {
     yield waitForProperty(this, property);
     return this.get(property);
   }

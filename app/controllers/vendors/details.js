@@ -8,9 +8,12 @@ export default class VendorsDetailsController extends Controller {
   @tracked bestuurseenhedenLijst = [];
 
   @action
-  async addToList(vendor){
-    const allEenheden = await loadAllBestuurseenheidenForVendor(this.store, vendor);
-    const updatedEenheden = [ ...allEenheden, ...this.bestuurseenhedenLijst];
+  async addToList(vendor) {
+    const allEenheden = await loadAllBestuurseenheidenForVendor(
+      this.store,
+      vendor
+    );
+    const updatedEenheden = [...allEenheden, ...this.bestuurseenhedenLijst];
     (await vendor.canActOnBehalfOf).setObjects(updatedEenheden);
     await vendor.save();
     this.bestuurseenhedenLijst = [];
@@ -18,17 +21,17 @@ export default class VendorsDetailsController extends Controller {
   }
 
   @action
-  async appendBestuurseenheid(eenheid){
+  async appendBestuurseenheid(eenheid) {
     this.bestuurseenhedenLijst.pushObject(eenheid);
   }
 
   @action
-  removeBestuurseenheid(eenheid){
+  removeBestuurseenheid(eenheid) {
     this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid);
   }
 
   @action
-  copyToClipboard(key){
+  copyToClipboard(key) {
     navigator.clipboard.writeText(key);
   }
 }
