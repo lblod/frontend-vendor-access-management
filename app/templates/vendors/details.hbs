@@ -19,13 +19,13 @@
         </div>
       </c.content>
     </AuCard>
-    <AuToolbar class="au-o-region">
-      <AuToolbarGroup>
+    <AuToolbar class="au-o-region" as |Group|>
+      <Group>
 
         <AuHeading @skin='3'>{{t 'vendor.subject.table.head-1'}}</AuHeading>
 
-      </AuToolbarGroup>
-      <AuToolbarGroup>
+      </Group>
+      <Group>
         <AuModal @buttonTitle={{t 'vendor.subject.table.button-1'}} @modalTitle="{{t 'vendor.subject.modal.head-1'}}">
           <AuModalBody>
             <BestuurseenheidToevoegen
@@ -38,7 +38,7 @@
             <AuButton {{ on 'click' ( fn this.addToList this.model )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
           </AuModalFooter>
         </AuModal>
-      </AuToolbarGroup>
+      </Group>
     </AuToolbar>
         {{outlet}}
 </div>

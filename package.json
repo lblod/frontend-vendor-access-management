@@ -24,8 +24,7 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
-    "@appuniversum/appuniversum": "0.0.14",
-    "@appuniversum/ember-appuniversum": "0.0.34",
+    "@appuniversum/ember-appuniversum": "^1.0.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
     "@glimmer/component": "^1.0.4",
@@ -76,7 +75,6 @@
     "qunit-dom": "^1.6.0",
     "release-it": "^15.5.0",
     "sass": "^1.26.11",
-    "svgxuse": "^1.2.6",
     "webpack": "^5.75.0"
   },
   "engines": {
