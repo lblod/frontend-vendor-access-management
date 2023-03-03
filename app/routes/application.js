@@ -42,14 +42,12 @@ export default class ApplicationRoute extends Route.extend(
 
   async _loadCurrentSession() {
     try {
-      const session = await this.currentSession.load();
-      if (!session.canManageVendors)
+      await this.currentSession.load();
+      if (!this.currentSession.canManageVendors)
         throw Error('This account can NOT manage vendors');
-      return session;
     } catch (e) {
       warn(e, { id: 'session-load-failure' });
       await this.session.invalidate();
     }
-    return null;
   }
 }
