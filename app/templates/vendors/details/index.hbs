@@ -5,7 +5,7 @@
       <c.header>
          <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
          <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;">{{t 'vendor.subject.table.row-3'}}</th>
+        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-3'}}</th>
       </c.header>
       <c.body as |bestuurseenheid|>
         <td>

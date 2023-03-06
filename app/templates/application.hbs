@@ -2,7 +2,7 @@
   <li class="au-c-list-horizontal__item">
     <LanguageDropdown/>
   </li>
-  {{#if session.isAuthenticated}}
+  {{#if this.session.isAuthenticated}}
     <li class="au-c-list-horizontal__item">
       <MockLogout @tagName="button" class="au-c-button au-c-button--tertiary" role="menuitem">
         <AuIcon @icon="logout" @alignment="left"/>
@@ -15,7 +15,7 @@
 <div class="au-c-main-container" id="main">
   <div class="au-c-main-container__content au-c-main-container__content--scroll">
 
-    <main id="content" style="min-height: 70rem">
+    <main id="content" style="min-height: 70rem" {{!template-lint-disable no-inline-styles}}>
       {{outlet}}
     </main>
 

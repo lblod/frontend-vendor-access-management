@@ -15,7 +15,13 @@ export default class BestuurseenheidToevoegenComponent extends Component {
   }
 
   get options() {
-    return this.isSearching ? this.searchData.results : [];
+    if (!this.isSearching) {
+      return [];
+    }
+
+    return this.searchData.results.filter((bestuurseenheid) => {
+      return !this.args.bestuurseenhedenLijst.includes(bestuurseenheid);
+    });
   }
 
   @restartableTask

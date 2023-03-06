@@ -7,22 +7,22 @@
 
   <div class="au-o-region-large">
     <div class="au-o-layout">
-      {{#mock-login as |login|}}
-        {{#if queryStore.isRunning}}
+      <MockLogin as |login|>
+        {{#if this.queryStore.isRunning}}
           <AuLoader @size="small"/>
         {{else}}
           {{#if login.errorMessage}}
             <AuAlert @alertIcon="alert-triangle" @alertTitle={{login.errorMessage}} @alertskin="warning"/>
           {{/if}}
-          {{#login.each-account accounts=model as |account|}}
+          <login.each-account @accounts={{this.model}} as |account|>
             <div class="au-o-box au-o-box--small au-c-card au-u-margin-bottom-small">
               <p>
                 {{account.gebruiker.voornaam}} {{account.gebruiker.achternaam}}
               </p>
             </div>
-          {{/login.each-account}}
+          </login.each-account>
         {{/if}}
-      {{/mock-login}}
+      </MockLogin>
     </div>
   </div>
 </main>

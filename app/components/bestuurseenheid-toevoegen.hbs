@@ -7,30 +7,26 @@
       </AuHeading>
     </c.header>
     <c.content>
-      <div style="position: relative; overflow: hidden;">
-        <PowerSelect
-          @ariaLabel="Zoekbalk"
-          @search={{perform this.search}}
-          @options={{this.options}}
-          @allowClear={{true}}
-          @searchEnabled={{true}}
-          @loadingMessage="Aan het laden..."
-          @searchMessage="Typ om te zoeken"
-          @noMatchesMessage="Geen resultaten"
-          @destination="ember-test"
-          @optionsComponent={{component
-            "infinite-select/options"
-            canLoadMore=this.searchData.canLoadMoreSearchResults
-            loadMore=(perform this.loadMoreSearchResults)
-            isLoadingMore=this.loadMoreSearchResults.isRunning
-          }}
-          @registerAPI={{this.registerAPI}}
-          @onChange={{@appendBestuurseenheid}} as |eenheid|>
-          {{#unless (includes eenheid @bestuurseenhedenLijst) }}
-           {{eenheid.naam}} ({{eenheid.classificatie.label}})
-          {{/unless}}
-        </PowerSelect>
-      </div>
+      <PowerSelect
+        @ariaLabel="Zoekbalk"
+        @search={{perform this.search}}
+        @options={{this.options}}
+        @allowClear={{true}}
+        @searchEnabled={{true}}
+        @loadingMessage="Aan het laden..."
+        @searchMessage="Typ om te zoeken"
+        @noMatchesMessage="Geen resultaten"
+        @destination="ember-test"
+        @optionsComponent={{component
+          "infinite-select/options"
+          canLoadMore=this.searchData.canLoadMoreSearchResults
+          loadMore=(perform this.loadMoreSearchResults)
+          isLoadingMore=this.loadMoreSearchResults.isRunning
+        }}
+        @registerAPI={{this.registerAPI}}
+        @onChange={{@appendBestuurseenheid}} as |eenheid|>
+          {{eenheid.naam}} ({{eenheid.classificatie.label}})
+      </PowerSelect>
     </c.content>
   </AuCard>
 
