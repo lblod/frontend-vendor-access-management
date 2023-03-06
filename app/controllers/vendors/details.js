@@ -6,6 +6,7 @@ import { loadAllBestuurseenheidenForVendor } from 'frontend-vendor-access-manage
 
 export default class VendorsDetailsController extends Controller {
   @tracked bestuurseenhedenLijst = [];
+  @tracked isAddingAdministrativeUnits = false;
 
   @action
   async addToList(vendor) {
@@ -33,5 +34,15 @@ export default class VendorsDetailsController extends Controller {
   @action
   copyToClipboard(key) {
     navigator.clipboard.writeText(key);
+  }
+
+  @action
+  showAddModal() {
+    this.isAddingAdministrativeUnits = true;
+  }
+
+  @action
+  closeAddModal() {
+    this.isAddingAdministrativeUnits = false;
   }
 }
