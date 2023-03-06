@@ -12,8 +12,8 @@
       <c.content>
         <div class="au-o-box">
           <AuLabel for="input-regular" class="au-u-bold">{{t 'vendor.subject.card.head-1'}}</AuLabel>
-          <AuInput id="input-regular" type={{if this.hiddenKeyState "text" "password"}}
-            value="{{this.model.key}}" readonly />
+          <AuInput id="input-regular" @type={{if this.hiddenKeyState "text" "password"}}
+            @value="{{this.model.key}}" readonly />
           <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>{{t 'vendor.subject.card.button-1'}}</AuButton>
           <AuButton {{on 'click' (fn this.copyToClipboard this.model.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
         </div>
