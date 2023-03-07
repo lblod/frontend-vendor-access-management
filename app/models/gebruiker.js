@@ -6,4 +6,9 @@ export default class Gebruiker extends Model {
   @attr rijksregisterNumeer;
 
   @hasMany('bestuurseenheid', { async: true, inverse: null }) bestuurseenheden;
+
+  // used for mock login
+  get group() {
+    return this.bestuurseenheden.get('firstObject');
+  }
 }
