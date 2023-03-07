@@ -1,13 +1,15 @@
 <AuMainHeader @homeRoute="index" @appTitle="Vendor Access Management">
   <ul class="au-c-list-horizontal">
     <li class="au-c-list-horizontal__item">
-      <LanguageDropdown/>
+      <LanguageDropdown />
     </li>
     {{#if this.session.isAuthenticated}}
       <li class="au-c-list-horizontal__item">
-        <AuButton @icon="logout" @skin="link" {{on "click" this.logout}}>
-          {{t 'application.header.logout'}}
-        </AuButton>
+        <AuDropdown @title={{this.currentSession.user.fullName}} @alignment="right">
+          <AuButton @icon="logout" @skin="link" role="menuitem" {{on "click" this.logout}}>
+            {{t "application.header.logout"}}
+          </AuButton>
+        </AuDropdown>
       </li>
     {{/if}}
   </ul>
