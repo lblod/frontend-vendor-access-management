@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import { warn } from '@ember/debug';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class ApplicationRoute extends Route {
   @service currentSession;

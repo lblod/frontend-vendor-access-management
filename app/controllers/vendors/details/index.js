@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { loadAllVendorsForEenheid } from 'frontend-vendor-access-management/utils/load-relation-utils';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class VendorsSubjectController extends Controller {
   @service store;

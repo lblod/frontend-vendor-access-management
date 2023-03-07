@@ -1,6 +1,6 @@
 /* eslint-disable ember/no-mixins */
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { action } from '@ember/object';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
 
