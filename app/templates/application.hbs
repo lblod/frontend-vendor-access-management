@@ -1,41 +1,43 @@
-<AuMainHeader @homeRoute="index" @appTitle="Vendor Access Management">
-  <ul class="au-c-list-horizontal">
-    <li class="au-c-list-horizontal__item">
-      <LanguageDropdown />
-    </li>
-    {{#if this.session.isAuthenticated}}
+<AuApp>
+  <AuMainHeader @homeRoute="index" @appTitle="Vendor Access Management">
+    <ul class="au-c-list-horizontal">
       <li class="au-c-list-horizontal__item">
-        <AuDropdown @title={{this.currentSession.user.fullName}} @alignment="right">
-          <AuButton @icon="logout" @skin="link" role="menuitem" {{on "click" this.logout}}>
-            {{t "application.header.logout"}}
-          </AuButton>
-        </AuDropdown>
+        <LanguageDropdown />
       </li>
-    {{/if}}
-  </ul>
-</AuMainHeader>
+      {{#if this.session.isAuthenticated}}
+        <li class="au-c-list-horizontal__item">
+          <AuDropdown @title={{this.currentSession.user.fullName}} @alignment="right">
+            <AuButton @icon="logout" @skin="link" role="menuitem" {{on "click" this.logout}}>
+              {{t "application.header.logout"}}
+            </AuButton>
+          </AuDropdown>
+        </li>
+      {{/if}}
+    </ul>
+  </AuMainHeader>
 
-<div class="au-c-main-container" id="main">
-  <div class="au-c-main-container__content au-c-main-container__content--scroll">
+  <div class="au-c-main-container" id="main">
+    <div class="au-c-main-container__content au-c-main-container__content--scroll">
 
-    <main id="content" style="min-height: 70rem" {{!template-lint-disable no-inline-styles}}>
-      {{outlet}}
-    </main>
+      <main id="content" style="min-height: 70rem" {{!template-lint-disable no-inline-styles}}>
+        {{outlet}}
+      </main>
 
-    <AuMainFooter>
-      <AuHeading @level="2" @skin="4">
-        vendor-management.lblod.info is een officiële website van de Vlaamse overheid
-      </AuHeading>
-      <AuContent @skin="small">
-        <p>Uitgegeven door
-          <a class="au-c-link" href="https://www.vlaanderen.be/organisaties/administratieve-diensten-van-de-vlaamse-overheid/beleidsdomein-kanselarij-en-bestuur/agentschap-binnenlands-bestuur">
-            Agentschap Binnenlands Bestuur
-          </a>
-        </p>
-      </AuContent>
-    </AuMainFooter>
+      <AuMainFooter>
+        <AuHeading @level="2" @skin="4">
+          vendor-management.lblod.info is een officiële website van de Vlaamse overheid
+        </AuHeading>
+        <AuContent @skin="small">
+          <p>Uitgegeven door
+            <a class="au-c-link" href="https://www.vlaanderen.be/organisaties/administratieve-diensten-van-de-vlaamse-overheid/beleidsdomein-kanselarij-en-bestuur/agentschap-binnenlands-bestuur">
+              Agentschap Binnenlands Bestuur
+            </a>
+          </p>
+        </AuContent>
+      </AuMainFooter>
 
+    </div>
   </div>
-</div>
+</AuApp>
 
 <AuModalContainer />
