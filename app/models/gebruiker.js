@@ -5,7 +5,7 @@ export default class Gebruiker extends Model {
   @attr achternaam;
   @attr rijksregisterNumeer;
 
-  @hasMany('bestuurseenheid') bestuurseenheden;
+  @hasMany('bestuurseenheid', { async: true, inverse: null }) bestuurseenheden;
 
   // used for mock login
   get group() {
