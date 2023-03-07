@@ -3,10 +3,23 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class LanguageDropdownComponent extends Component {
-  @service('intl') intl;
+  @service intl;
+
+  supportedLanguages = {
+    'en-us': 'English',
+    'nl-be': 'Nederlands',
+  };
+
+  languageLabel = (language) => {
+    return this.supportedLanguages[language];
+  };
+
+  isActiveLanguage = (language) => {
+    return language === this.intl.primaryLocale;
+  };
 
   @action
   changeLanguage(lang) {
-    console.log(this.intl.set('locale', lang));
+    this.intl.set('locale', lang);
   }
 }

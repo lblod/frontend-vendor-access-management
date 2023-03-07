@@ -1,6 +1,12 @@
-<AuButton  @skin="tertiary" role="menuitem" {{on "click" (fn this.changeLanguage 'en-us')}} >
-  en-us
-</AuButton>
-<AuButton {{on "click" (fn this.changeLanguage 'nl-be')}}  @skin="tertiary" role="menuitem">
-  nl-be
-</AuButton>
+<AuDropdown @title={{this.languageLabel this.intl.primaryLocale}} @alignment="right">
+  {{#each-in this.supportedLanguages as |language label|}}
+    <AuButton
+      @skin="link"
+      @disabled={{this.isActiveLanguage language}}
+      role="menuitem"
+      {{on "click" (fn this.changeLanguage language)}}
+    >
+      {{label}}
+    </AuButton>
+  {{/each-in}}
+</AuDropdown>
