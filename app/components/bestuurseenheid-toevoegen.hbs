@@ -38,7 +38,7 @@
     </c.header>
 
     <c.content>
-        <div class=""  {{auto-focus '.au-c-button' }}>
+        <div>
           {{#each @bestuurseenhedenLijst as |eenheid|}}
             <AuPill class="au-u-margin-bottom-small">
                 {{eenheid.naam}}  <AuIcon @icon="cross" @size="medium" {{on 'click' (fn @removeBestuurseenheid eenheid) }}/>
