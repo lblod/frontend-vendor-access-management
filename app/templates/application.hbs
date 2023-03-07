@@ -1,15 +1,16 @@
-<AuMainHeader @brandLink="#" @homeRoute="index" @appTitle="Vendor Access Management">
-  <li class="au-c-list-horizontal__item">
-    <LanguageDropdown/>
-  </li>
-  {{#if this.session.isAuthenticated}}
+<AuMainHeader @homeRoute="index" @appTitle="Vendor Access Management">
+  <ul class="au-c-list-horizontal">
     <li class="au-c-list-horizontal__item">
-      <MockLogout @tagName="button" class="au-c-button au-c-button--tertiary">
-        <AuIcon @icon="logout" @alignment="left"/>
-        {{t 'application.header.logout'}}
-      </MockLogout>
+      <LanguageDropdown/>
     </li>
-  {{/if}}
+    {{#if this.session.isAuthenticated}}
+      <li class="au-c-list-horizontal__item">
+        <AuButton @icon="logout" @skin="link" {{on "click" this.logout}}>
+          {{t 'application.header.logout'}}
+        </AuButton>
+      </li>
+    {{/if}}
+  </ul>
 </AuMainHeader>
 
 <div class="au-c-main-container" id="main">
