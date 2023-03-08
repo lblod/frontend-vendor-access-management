@@ -6,6 +6,7 @@ import { service } from '@ember/service';
 import { loadAllBestuurseenheidenForVendor } from 'frontend-vendor-access-management/utils/load-relation-utils';
 
 export default class VendorsDetailsController extends Controller {
+  @service router;
   @service store;
   @tracked bestuurseenhedenLijst = [];
   @tracked isAddingAdministrativeUnits = false;
@@ -20,7 +21,7 @@ export default class VendorsDetailsController extends Controller {
     (await vendor.canActOnBehalfOf).setObjects(updatedEenheden);
     await vendor.save();
     this.bestuurseenhedenLijst = [];
-    this.send('reloadModel');
+    this.router.refresh('vendors.details');
   }
 
   @action

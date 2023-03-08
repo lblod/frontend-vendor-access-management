@@ -4,6 +4,7 @@ import { loadAllVendorsForEenheid } from 'frontend-vendor-access-management/util
 import { service } from '@ember/service';
 
 export default class VendorsSubjectController extends Controller {
+  @service router;
   @service store;
   sort = 'naam';
   page = 0;
@@ -19,7 +20,6 @@ export default class VendorsSubjectController extends Controller {
     (await bestuurseenheid.vendors).setObjects(updatedVendors);
     await bestuurseenheid.save();
     //We must trigger model(), since the pagination depends on this.
-    //See also https://github.com/lblod/frontend-loket/blob/48f733e26b5a0aa1737f7c7bf920f7450c608956/app/controllers/mandatenbeheer/mandatarissen/edit.js
-    this.send('reloadModel');
+    this.router.refresh('vendors.details.index');
   }
 }
