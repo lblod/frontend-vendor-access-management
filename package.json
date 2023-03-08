@@ -27,7 +27,11 @@
   "devDependencies": {
     "@appuniversum/ember-appuniversum": "^2.4.2",
     "@ember/optional-features": "^2.0.0",
+    "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^2.8.1",
+    "@embroider/compat": "^2.0.0",
+    "@embroider/core": "^2.0.0",
+    "@embroider/webpack": "^2.0.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@lblod/ember-mock-login": "^0.7.0",
@@ -51,9 +55,10 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-concurrency": "^2.3.7",
-    "ember-data": "~4.8.0",
+    "ember-data": "~4.11.0",
     "ember-data-table": "^2.1.0",
     "ember-fetch": "^8.1.2",
+    "ember-focus-trap": "^1.0.1",
     "ember-intl": "^5.5.0",
     "ember-load-initializers": "^2.1.2",
     "ember-page-title": "^7.0.0",
@@ -76,7 +81,12 @@
     "qunit-dom": "^2.0.0",
     "release-it": "^15.5.0",
     "sass": "^1.26.11",
-    "webpack": "^5.75.0"
+    "webpack": "^5.67.0"
+  },
+  "devDependenciesNotes": {
+    "@ember/string": "some addons list this as a peerDependency, we can remove it again once those addons switch to a different package",
+    "ember-focus-trap": "Appuniversum uses this, but there is an Embroider issue that prevents it from building without listing it as a dep ourselves: https://github.com/embroider-build/embroider/issues/1175",
+    "ember-data": "We install v4.11 here since older versions don't want to build under Embroider, even after disabling the package rules and adapters"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"
