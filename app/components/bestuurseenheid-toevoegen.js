@@ -33,7 +33,7 @@ export default class BestuurseenheidToevoegenComponent extends Component {
     this.searchData = new SearchData({
       totalResultAmount: results.meta.count,
       searchTerm: searchTerm,
-      results: results.toArray(),
+      results: results.slice(),
     });
   }
 
@@ -45,7 +45,7 @@ export default class BestuurseenheidToevoegenComponent extends Component {
         page: ++this.searchData.currentPage,
       });
 
-      this.searchData.addSearchResults(results.toArray());
+      this.searchData.addSearchResults(results.slice());
     }
   }
 
