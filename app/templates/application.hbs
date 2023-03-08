@@ -7,7 +7,8 @@
       {{#if this.session.isAuthenticated}}
         <li class="au-c-list-horizontal__item">
           <AuDropdown @title={{this.currentSession.user.fullName}} @alignment="right">
-            <AuButton @icon="logout" @skin="link" role="menuitem" {{on "click" this.logout}}>
+            {{!template-lint-disable require-context-role}}
+            <AuButton @icon="logout" @skin="link" role="menuitem" require-context-role {{on "click" this.logout}}>
               {{t "application.header.logout"}}
             </AuButton>
           </AuDropdown>

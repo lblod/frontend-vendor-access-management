@@ -1,5 +1,6 @@
 <AuDropdown @title={{this.languageLabel this.intl.primaryLocale}} @alignment="right">
   {{#each-in this.supportedLanguages as |language label|}}
+    {{!template-lint-disable require-context-role}}
     <AuButton
       @skin="link"
       @disabled={{this.isActiveLanguage language}}
