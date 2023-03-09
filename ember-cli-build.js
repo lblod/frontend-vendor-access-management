@@ -26,5 +26,31 @@ module.exports = function (defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  const { Webpack } = require('@embroider/webpack');
+
+  // The built-in compat adapters for Ember Data shouldn't be needed anymore.
+  // This code can be removed once https://github.com/embroider-build/embroider/pull/1369 is released.
+  const compatAdapters = new Map();
+  compatAdapters.set('ember-data', null);
+  compatAdapters.set('@ember-data/adapter', null);
+  compatAdapters.set('@ember-data/model', null);
+  compatAdapters.set('@ember-data/record-data', null);
+  compatAdapters.set('@ember-data/store', null);
+
+  return require('@embroider/compat').compatBuild(app, Webpack, {
+    staticAddonTestSupportTrees: true,
+    staticAddonTrees: true,
+    staticHelpers: true,
+    staticModifiers: true,
+    staticComponents: true,
+    // splitAtRoutes: ['route.name'], // can also be a RegExp
+    // packagerOptions: {
+    //    webpackConfig: { }
+    // }
+    //
+
+    packageRules: [{ '@ember-data/store': null }],
+    compatAdapters,
+    extraPublicTrees: [],
+  });
 };
