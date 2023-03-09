@@ -13,6 +13,6 @@ export default class Gebruiker extends Model {
 
   // used for mock login
   get group() {
-    return this.bestuurseenheden.get('firstObject');
+    return this.hasMany('bestuurseenheden').value()[0];
   }
 }
