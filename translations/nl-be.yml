@@ -9,6 +9,7 @@ actions:
 loading:
   add: Aan het toevoegen
   delete: Aan het verwijderen
+  remove: Aan het verwijderen
 
 search:
   placeholder: Vul uw zoekterm in

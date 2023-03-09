@@ -129,7 +129,7 @@
       {{t "vendor.subject.delete-modal.title"}}
     </:title>
     <:footer>
-      <AuButton @alert={{true}} @icon="link-broken" @loading={{this.removeFromList.isRunning}} @loadingMessage={{t "loading.delete"}} {{ on 'click' (perform this.removeFromList)}}>
+      <AuButton @alert={{true}} @icon="link-broken" @loading={{this.removeFromList.isRunning}} @loadingMessage={{t "loading.remove"}} {{ on 'click' (perform this.removeFromList)}}>
         {{t "actions.remove"}}
       </AuButton>
       <AuButton @skin="secondary" @disabled={{this.removeFromList.isRunning}} {{ on 'click' this.hideDeleteConfirmationModal}}>
