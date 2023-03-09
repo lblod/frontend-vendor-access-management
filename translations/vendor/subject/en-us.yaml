@@ -1,5 +1,6 @@
 main:
   head-1: Edit Vendor Access
+  back: Back to overview
 card:
   head-1: API key
   button-1: Show
@@ -7,6 +8,7 @@ card:
 table:
   head-1: Access rights
   button-1: Add
+  button-remove: Remove access rights
   not-found: No administrative units assigned.
   row-1: Administrative unit
   row-2: Type
@@ -17,3 +19,5 @@ modal:
   head-3: List
   button-1: Save
   load-more: Load more administrative units
+delete-modal:
+  title: Remove access rights

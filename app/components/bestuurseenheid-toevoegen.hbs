@@ -1,5 +1,4 @@
 <div class="au-o-flow">
-  <div id="ember-test"></div>
   <AuCard @flex="true" as |c|>
     <c.header>
       <AuHeading @level="2" @skin="4" id="describe-search">
@@ -16,7 +15,6 @@
         @loadingMessage="Aan het laden..."
         @searchMessage="Typ om te zoeken"
         @noMatchesMessage="Geen resultaten"
-        @destination="ember-test"
         @optionsComponent={{component
           "infinite-select/options"
           canLoadMore=this.searchData.canLoadMoreSearchResults
@@ -24,6 +22,7 @@
           isLoadingMore=this.loadMoreSearchResults.isRunning
         }}
         @registerAPI={{this.registerAPI}}
+        @renderInPlace={{true}}
         @onChange={{@appendBestuurseenheid}} as |eenheid|>
           {{eenheid.naam}} ({{eenheid.classificatie.label}})
       </PowerSelect>

@@ -17,3 +17,19 @@
     max-height: none;
   }
 }
+
+.au-c-content ul.ember-power-select-options {
+  list-style: none;
+  margin-left: 0
+}
+
+// The main header content should appear in front of other page contents (table headers, sticky toolbars, etc)
+.au-c-main-header {
+  z-index: var(--au-z-index-gamma);
+}
+
+.au-c-toolbar--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--au-z-index-beta);
+}

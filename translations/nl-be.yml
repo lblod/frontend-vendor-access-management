@@ -1,2 +1,11 @@
 actions:
+  cancel: Annuleer
   delete: Verwijderen
+  remove: Verwijderen
+
+loading:
+  add: Aan het toevoegen
+  delete: Aan het verwijderen
+
+search:
+  placeholder: Vul uw zoekterm in

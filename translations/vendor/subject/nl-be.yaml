@@ -1,5 +1,6 @@
 main:
   head-1: Wijzig toegankelijkheid
+  back: Terug naar overzicht
 card:
   head-1: API sleutel
   button-1: Toon
@@ -7,6 +8,7 @@ card:
 table:
   head-1: Toegangsrechten
   button-1: Toevoegen
+  button-remove: Toegangsrechten verwijderen
   not-found: Geen bestuurseenheden aangewezen.
   row-1: Bestuurseenheid
   row-2: Type
@@ -17,3 +19,5 @@ modal:
   head-3: Lijst
   button-1: Opslaan
   load-more: Meer bestuurseenheden laden
+delete-modal:
+  title: Toegangsrechten verwijderen
