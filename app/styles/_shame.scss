@@ -33,3 +33,30 @@
   top: 0;
   z-index: var(--au-z-index-beta);
 }
+
+// Hacky API-key styling
+// The accordion component adds styles for its own button, but it bleeds in the content as well.
+.au-c-accordion .au-c-content .au-c-button {
+  cursor: pointer;
+  padding-left: 12px;
+}
+
+.au-c-accordion .au-c-content .au-c-button.au-c-button--icon-only {
+  padding: 0 calc(( 3.2rem - var(--au-icon-size-medium) ) / 2);
+}
+
+.c-api-key {
+  position: relative;
+  width: 100%;
+}
+
+.c-api-key__input {
+  padding-right: 36px;
+}
+
+.c-api-key__visibility-toggle {
+  height: 100% !important;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

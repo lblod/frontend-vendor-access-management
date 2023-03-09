@@ -3,8 +3,6 @@ main:
   back: Back to overview
 card:
   head-1: API key
-  button-1: Show
-  button-2: Copy
 table:
   head-1: Access rights
   button-1: Add

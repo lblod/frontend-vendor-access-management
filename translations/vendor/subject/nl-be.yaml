@@ -3,8 +3,6 @@ main:
   back: Terug naar overzicht
 card:
   head-1: API sleutel
-  button-1: Toon
-  button-2: kopieer
 table:
   head-1: Toegangsrechten
   button-1: Toevoegen

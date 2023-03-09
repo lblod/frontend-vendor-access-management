@@ -12,23 +12,46 @@
   </Group>
 </AuToolbar>
 <div class="au-o-body-container au-o-box au-o-layout au-u-margin-top au-u-margin-bottom">
-  <AuHeading class="au-o-region">{{t 'vendor.subject.main.head-1'}}</AuHeading>
-  <AuCard @flex="true" class="au-u-margin-bottom" as |c|>
-    <c.header @badgeSkin="brand" @badgeIcon="users">
-      <AuHeading @level="2" @skin="4">
-        {{this.vendor.name}} ({{this.vendor.uri}})
-      </AuHeading>
-    </c.header>
-    <c.content>
-      <div class="au-o-box">
-        <AuLabel for="input-regular" class="au-u-bold">{{t 'vendor.subject.card.head-1'}}</AuLabel>
-        <AuInput id="input-regular" @type={{if this.hiddenKeyState "text" "password"}}
-          @value={{this.vendor.key}} readonly />
-        <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>{{t 'vendor.subject.card.button-1'}}</AuButton>
-        <AuButton {{on 'click' (fn this.copyToClipboard this.vendor.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
-      </div>
-    </c.content>
-  </AuCard>
+  <AuHeading>{{t 'vendor.subject.main.head-1'}}</AuHeading>
+  <div class="au-u-flex au-u-flex--wrap au-u-flex--vertical-baseline au-u-margin-bottom">
+    <p class="au-u-h3 au-u-margin-right-tiny">
+      {{this.vendor.name}}
+    </p>
+    <AuHelpText>
+      (<AuLinkExternal href={{this.vendor.uri}}>{{this.vendor.uri}}</AuLinkExternal>)
+    </AuHelpText>
+  </div>
+  <AuAccordion
+    @skin="border"
+    @iconOpen="settings"
+    @iconClosed="settings"
+    @buttonLabel={{t "vendor.subject.card.head-1"}}
+    class="au-u-max-width-xsmall"
+  >
+    <div class="au-u-flex">
+      <div class="c-api-key au-u-margin-right-tiny">
+        <AuInput
+          id="input-regular"
+          @width="block" @type={{if this.hiddenKeyState "text" "password"}}
+          @value={{this.vendor.key}}
+          readonly
+          class="c-api-key__input"
+        />
+        <AuButton
+          @skin="naked"
+          @icon={{if this.hiddenKeyState "not-visible" "visible"}}
+          @hideText={{true}}
+          {{on 'click' (toggle "hiddenKeyState" this)}}
+          class="c-api-key__visibility-toggle"
+        >{{t (if this.hiddenKeyState "actions.hide" "actions.show")}}</AuButton>
+        </div>
+      <AuButton
+        @icon="copy"
+        @skin="secondary"
+        {{on 'click' (fn this.copyToClipboard this.vendor.key)}}
+      >{{t 'actions.copy'}}</AuButton>
+    </div>
+  </AuAccordion>
 
   <AuToolbar class="au-o-region" as |Group|>
     <Group>

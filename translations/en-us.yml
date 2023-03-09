@@ -1,7 +1,10 @@
 actions:
   cancel: Cancel
+  copy: Copy
   delete: Delete
+  hide: Hide
   remove: Remove
+  show: Show
 
 loading:
   add: Adding

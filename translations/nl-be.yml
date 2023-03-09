@@ -1,7 +1,10 @@
 actions:
   cancel: Annuleer
+  copy: Kopieer
   delete: Verwijderen
+  hide: Verbergen
   remove: Verwijderen
+  show: Tonen
 
 loading:
   add: Aan het toevoegen
