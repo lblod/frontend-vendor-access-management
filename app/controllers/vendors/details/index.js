@@ -2,17 +2,19 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { task } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
-export default class VendorsSubjectController extends Controller {
+export default class VendorsDetailsIndexController extends Controller {
+  queryParams = ['filter', 'sort', 'page'];
   @service router;
   @service store;
   @tracked vendor;
   @tracked bestuurseenhedenLijst = [];
   @tracked isAddingAdministrativeUnits = false;
   @tracked bestuurseenheidToRemove;
+  @tracked filter = '';
+  @tracked page = 0;
   sort = 'naam';
-  page = 0;
   size = 20;
 
   get shouldShowDeleteConfirmationModal() {
@@ -41,6 +43,13 @@ export default class VendorsSubjectController extends Controller {
     this.bestuurseenhedenLijst = [];
     this.router.refresh('vendors.details');
     this.closeAddModal();
+  });
+
+  search = task({ restartable: true }, async (searchValue) => {
+    await timeout(500);
+
+    this.filter = searchValue.trim();
+    this.resetPagination();
   });
 
   @action
@@ -78,5 +87,9 @@ export default class VendorsSubjectController extends Controller {
     if (this.removeFromList.isIdle || force) {
       this.bestuurseenheidToRemove = null;
     }
+  }
+
+  resetPagination() {
+    this.page = 0;
   }
 }

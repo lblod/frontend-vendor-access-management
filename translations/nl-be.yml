@@ -6,3 +6,6 @@ actions:
 loading:
   add: Aan het toevoegen
   delete: Aan het verwijderen
+
+search:
+  placeholder: Vul uw zoekterm in

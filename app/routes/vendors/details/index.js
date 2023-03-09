@@ -6,6 +6,18 @@ import DataTableRouteMixin from 'ember-data-table/mixins/route';
 export default class VendorsDetailsIndexRoute extends Route.extend(
   DataTableRouteMixin
 ) {
+  queryParams = {
+    filter: {
+      refreshModel: true,
+      replace: true,
+    },
+    page: {
+      refreshModel: true,
+    },
+    sort: {
+      refreshModel: true,
+    },
+  };
   @service store;
   modelName = 'bestuurseenheid';
 
