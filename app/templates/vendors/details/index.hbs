@@ -1,24 +1,40 @@
-  <AuDataTable @content={{this.model}} @fields="Vendors"
-    @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
-    @isLoading={{this.isLoading}} as |f|>
-    <f.content as |c|>
-      <c.header>
-         <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
-         <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-3'}}</th>
-      </c.header>
-      <c.body as |bestuurseenheid|>
-        <td>
-          {{bestuurseenheid.naam}}
-        </td>
-        <td>
-          {{bestuurseenheid.classificatie.label}}
-        </td>
-        <td>
-          <AuButton @alert="true" {{ on 'click' (fn this.removeFromList bestuurseenheid this.vendor)}}>
-            {{t "actions.delete"}}
-          </AuButton>
-        </td>
-      </c.body>
-    </f.content>
-  </AuDataTable>
+<AuDataTable @content={{this.model}} @fields="Vendors"
+  @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
+  @isLoading={{this.isLoading}} as |f|>
+  <f.content as |c|>
+    <c.header>
+        <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
+        <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
+      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-3'}}</th>
+    </c.header>
+    <c.body as |bestuurseenheid|>
+      <td>
+        {{bestuurseenheid.naam}}
+      </td>
+      <td>
+        {{bestuurseenheid.classificatie.label}}
+      </td>
+      <td>
+        <AuButton @alert="true" @skin="link" @icon="link-broken" {{ on 'click' (fn this.showDeleteConfirmationModal bestuurseenheid)}}>
+          {{t "vendor.subject.table.button-remove"}}
+        </AuButton>
+      </td>
+    </c.body>
+  </f.content>
+</AuDataTable>
+
+{{#if this.shouldShowDeleteConfirmationModal}}
+  <AuModal @modalOpen={{true}} @closeModal={{this.hideDeleteConfirmationModal}}>
+    <:title>
+      {{t "vendor.subject.delete-modal.title"}}
+    </:title>
+    <:footer>
+      <AuButton @alert={{true}} @icon="link-broken" @loading={{this.removeFromList.isRunning}} @loadingMessage={{t "loading.delete"}} {{ on 'click' (perform this.removeFromList)}}>
+        {{t "actions.remove"}}
+      </AuButton>
+      <AuButton @skin="secondary" @disabled={{this.removeFromList.isRunning}} {{ on 'click' this.hideDeleteConfirmationModal}}>
+        {{t "actions.cancel"}}
+      </AuButton>
+    </:footer>
+  </AuModal>
+{{/if}}

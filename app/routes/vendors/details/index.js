@@ -18,6 +18,6 @@ export default class VendorsDetailsIndexRoute extends Route.extend(
 
   setupController(controller, model) {
     super.setupController(controller, model);
-    controller.set('vendor', this.modelFor('vendors/details'));
+    controller.vendor = this.modelFor('vendors/details');
   }
 }

@@ -2,8 +2,7 @@ import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
-
-import { loadAllBestuurseenheidenForVendor } from 'frontend-vendor-access-management/utils/load-relation-utils';
+import { task } from 'ember-concurrency';
 
 export default class VendorsDetailsController extends Controller {
   @service router;
@@ -11,18 +10,23 @@ export default class VendorsDetailsController extends Controller {
   @tracked bestuurseenhedenLijst = [];
   @tracked isAddingAdministrativeUnits = false;
 
-  @action
-  async addToList(vendor) {
-    const allEenheden = await loadAllBestuurseenheidenForVendor(
-      this.store,
-      vendor
+  get vendor() {
+    return this.model;
+  }
+
+  addToList = task({ drop: true }, async () => {
+    await Promise.all(
+      this.bestuurseenhedenLijst.map(async (bestuurseenheid) => {
+        const vendors = await bestuurseenheid.vendors;
+        vendors.push(this.vendor);
+        await bestuurseenheid.save();
+      })
     );
-    const updatedEenheden = [...allEenheden, ...this.bestuurseenhedenLijst];
-    (await vendor.canActOnBehalfOf).setObjects(updatedEenheden);
-    await vendor.save();
+
     this.bestuurseenhedenLijst = [];
     this.router.refresh('vendors.details');
-  }
+    this.closeAddModal();
+  });
 
   @action
   async appendBestuurseenheid(eenheid) {

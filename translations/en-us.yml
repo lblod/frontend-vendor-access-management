@@ -1,2 +1,9 @@
 actions:
+  cancel: Cancel
   delete: Delete
+  remove: Remove
+
+loading:
+  add: Adding
+  delete: Deleting
+  remove: Removing

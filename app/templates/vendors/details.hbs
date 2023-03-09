@@ -26,23 +26,28 @@
 
       </Group>
       <Group>
-        <AuButton {{on "click" this.showAddModal}}>{{t "vendor.subject.table.button-1"}}</AuButton>
+        <AuButton @icon="add" {{on "click" this.showAddModal}}>{{t "vendor.subject.table.button-1"}}</AuButton>
       </Group>
     </AuToolbar>
         {{outlet}}
 </div>
 
 {{#if this.isAddingAdministrativeUnits}}
-  <AuModal @modalOpen={{true}} @title="{{t 'vendor.subject.modal.head-1'}}" @closeModal={{this.closeAddModal}}>
-    <AuModalBody>
+  <AuModal @modalOpen={{true}} @closeModal={{this.closeAddModal}} @overflow={{true}}>
+    <:title>
+      {{t 'vendor.subject.modal.head-1'}}
+    </:title>
+    <:body>
       <BestuurseenheidToevoegen
         @onListBestuurseenheden={{this.listBestuurseenheden}}
         @appendBestuurseenheid={{this.appendBestuurseenheid}}
         @bestuurseenhedenLijst={{this.bestuurseenhedenLijst}}
         @removeBestuurseenheid={{this.removeBestuurseenheid}} />
-    </AuModalBody>
-    <AuModalFooter>
-      <AuButton {{ on 'click' ( fn this.addToList this.model )}}>{{t 'vendor.subject.modal.button-1'}}</AuButton>
-    </AuModalFooter>
+    </:body>
+    <:footer>
+      <AuButton @loading={{this.addToList.isRunning}} @loadingMessage="Aan het toevoegen" {{ on 'click' (perform this.addToList)}}>
+        {{t 'vendor.subject.modal.button-1'}}
+      </AuButton>
+    </:footer>
   </AuModal>
 {{/if}}
