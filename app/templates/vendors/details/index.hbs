@@ -116,7 +116,7 @@
         @removeBestuurseenheid={{this.removeBestuurseenheid}} />
     </:body>
     <:footer>
-      <AuButton @loading={{this.addToList.isRunning}} @loadingMessage="Aan het toevoegen" {{ on 'click' (perform this.addToList)}}>
+      <AuButton @loading={{this.addToList.isRunning}} @loadingMessage={{t "loading.add"}} {{ on 'click' (perform this.addToList)}}>
         {{t 'vendor.subject.modal.button-1'}}
       </AuButton>
     </:footer>
