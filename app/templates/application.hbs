@@ -16,14 +16,9 @@
       {{/if}}
     </ul>
   </AuMainHeader>
-
-  <div class="au-c-main-container" id="main">
-    <div class="au-c-main-container__content au-c-main-container__content--scroll">
-
-      <main id="content" style="min-height: 70rem" {{!template-lint-disable no-inline-styles}}>
-        {{outlet}}
-      </main>
-
+  <AuMainContainer as |m|>
+    <m.content @scroll={{true}}>
+      {{outlet}}
       <AuMainFooter>
         <AuHeading @level="2" @skin="4">
           vendor-management.lblod.info is een officiële website van de Vlaamse overheid
@@ -36,9 +31,8 @@
           </p>
         </AuContent>
       </AuMainFooter>
-
-    </div>
-  </div>
+    </m.content>
+  </AuMainContainer>
 </AuApp>
 
 <AuModalContainer />

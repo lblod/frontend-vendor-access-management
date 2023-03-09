@@ -1,5 +1,6 @@
 main:
   head-1: Edit Vendor Access
+  back: Back to overview
 card:
   head-1: API key
   button-1: Show
