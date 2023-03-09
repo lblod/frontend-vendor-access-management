@@ -1,27 +1,76 @@
-<AuDataTable @content={{this.model}} @fields="Vendors"
-  @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
-  @isLoading={{this.isLoading}} as |f|>
-  <f.content as |c|>
-    <c.header>
-        <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
-        <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
-      <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-3'}}</th>
+<div class="au-o-body-container au-o-box au-o-layout au-u-margin-top au-u-margin-bottom">
+  <AuHeading class="au-o-region">{{t 'vendor.subject.main.head-1'}}</AuHeading>
+  <AuCard @flex="true" class="au-u-margin-bottom" as |c|>
+    <c.header @badgeSkin="brand" @badgeIcon="users">
+      <AuHeading @level="2" @skin="4">
+        {{this.vendor.name}} ({{this.vendor.uri}})
+      </AuHeading>
     </c.header>
-    <c.body as |bestuurseenheid|>
-      <td>
-        {{bestuurseenheid.naam}}
-      </td>
-      <td>
-        {{bestuurseenheid.classificatie.label}}
-      </td>
-      <td>
-        <AuButton @alert="true" @skin="link" @icon="link-broken" {{ on 'click' (fn this.showDeleteConfirmationModal bestuurseenheid)}}>
-          {{t "vendor.subject.table.button-remove"}}
-        </AuButton>
-      </td>
-    </c.body>
-  </f.content>
-</AuDataTable>
+    <c.content>
+      <div class="au-o-box">
+        <AuLabel for="input-regular" class="au-u-bold">{{t 'vendor.subject.card.head-1'}}</AuLabel>
+        <AuInput id="input-regular" @type={{if this.hiddenKeyState "text" "password"}}
+          @value={{this.vendor.key}} readonly />
+        <AuButton {{on 'click' (toggle "hiddenKeyState" this)}}>{{t 'vendor.subject.card.button-1'}}</AuButton>
+        <AuButton {{on 'click' (fn this.copyToClipboard this.vendor.key)}} @skin="secondary">{{t 'vendor.subject.card.button-2'}}</AuButton>
+      </div>
+    </c.content>
+  </AuCard>
+
+  <AuToolbar class="au-o-region" as |Group|>
+    <Group>
+      <AuHeading @skin='3'>{{t 'vendor.subject.table.head-1'}}</AuHeading>
+    </Group>
+    <Group>
+      <AuButton @icon="add" {{on "click" this.showAddModal}}>{{t "vendor.subject.table.button-1"}}</AuButton>
+    </Group>
+  </AuToolbar>
+
+  <AuDataTable @content={{this.model}} @fields="Vendors"
+    @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
+    @isLoading={{this.isLoading}} as |f|>
+    <f.content as |c|>
+      <c.header>
+          <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
+          <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
+        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-3'}}</th>
+      </c.header>
+      <c.body as |bestuurseenheid|>
+        <td>
+          {{bestuurseenheid.naam}}
+        </td>
+        <td>
+          {{bestuurseenheid.classificatie.label}}
+        </td>
+        <td>
+          <AuButton @alert="true" @skin="link" @icon="link-broken" {{ on 'click' (fn this.showDeleteConfirmationModal bestuurseenheid)}}>
+            {{t "vendor.subject.table.button-remove"}}
+          </AuButton>
+        </td>
+      </c.body>
+    </f.content>
+  </AuDataTable>
+</div>
+
+{{#if this.isAddingAdministrativeUnits}}
+  <AuModal @modalOpen={{true}} @closeModal={{this.closeAddModal}} @overflow={{true}}>
+    <:title>
+      {{t 'vendor.subject.modal.head-1'}}
+    </:title>
+    <:body>
+      <BestuurseenheidToevoegen
+        @onListBestuurseenheden={{this.listBestuurseenheden}}
+        @appendBestuurseenheid={{this.appendBestuurseenheid}}
+        @bestuurseenhedenLijst={{this.bestuurseenhedenLijst}}
+        @removeBestuurseenheid={{this.removeBestuurseenheid}} />
+    </:body>
+    <:footer>
+      <AuButton @loading={{this.addToList.isRunning}} @loadingMessage="Aan het toevoegen" {{ on 'click' (perform this.addToList)}}>
+        {{t 'vendor.subject.modal.button-1'}}
+      </AuButton>
+    </:footer>
+  </AuModal>
+{{/if}}
 
 {{#if this.shouldShowDeleteConfirmationModal}}
   <AuModal @modalOpen={{true}} @closeModal={{this.hideDeleteConfirmationModal}}>
