@@ -4,6 +4,10 @@ export default class VendorModel extends Model {
   @attr name;
   @attr uri;
   @attr key;
-  @hasMany('bestuurseenheid', { async: true, inverse: 'vendors' })
+  @hasMany('bestuurseenheid', {
+    async: true,
+    inverse: 'vendors',
+    polymorphic: true,
+  })
   canActOnBehalfOf;
 }

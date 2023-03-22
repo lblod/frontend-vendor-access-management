@@ -9,5 +9,10 @@ export default class BestuurseenheidModel extends Model {
     inverse: null,
   })
   classificatie;
-  @hasMany('vendor', { async: true, inverse: 'canActOnBehalfOf' }) vendors;
+  @hasMany('vendor', {
+    async: true,
+    inverse: 'canActOnBehalfOf',
+    as: 'bestuurseenheid',
+  })
+  vendors;
 }
