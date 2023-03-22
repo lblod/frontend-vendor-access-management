@@ -1,13 +1,14 @@
 <AuDropdown @title={{this.languageLabel this.intl.primaryLocale}} @alignment="right">
   {{#each-in this.supportedLanguages as |language label|}}
     {{!template-lint-disable require-context-role}}
-    <AuButton
-      @skin="link"
-      @disabled={{this.isActiveLanguage language}}
-      role="menuitem"
-      {{on "click" (fn this.changeLanguage language)}}
-    >
-      {{label}}
-    </AuButton>
+    {{#if (not (this.isActiveLanguage language))}}
+      <AuButton
+        @skin="link"
+        role="menuitem"
+        {{on "click" (fn this.changeLanguage language)}}
+      >
+        {{label}}
+      </AuButton>
+    {{/if}}
   {{/each-in}}
 </AuDropdown>
