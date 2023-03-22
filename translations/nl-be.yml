@@ -7,6 +7,7 @@ actions:
   show: Tonen
 
 loading:
+  generic: Aan het laden
   add: Aan het toevoegen
   delete: Aan het verwijderen
   remove: Aan het verwijderen
