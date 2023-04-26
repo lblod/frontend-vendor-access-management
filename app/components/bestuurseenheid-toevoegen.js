@@ -7,7 +7,7 @@ import { dropTask, restartableTask, timeout } from 'ember-concurrency';
 export default class BestuurseenheidToevoegenComponent extends Component {
   @service store;
 
-  @tracked selected = null;
+  @tracked selected = undefined;
   @tracked searchData;
 
   get isSearching() {
@@ -19,9 +19,15 @@ export default class BestuurseenheidToevoegenComponent extends Component {
       return [];
     }
 
+    //TODO filter through a different list, we're not using pre lists anymore
     return this.searchData.results.filter((bestuurseenheid) => {
       return !this.args.bestuurseenhedenLijst.includes(bestuurseenheid);
     });
+  }
+
+  @action
+  setOption(selected) {
+    this.selected = selected;
   }
 
   @restartableTask

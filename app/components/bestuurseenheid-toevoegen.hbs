@@ -20,7 +20,9 @@
       isLoadingMore=this.loadMoreSearchResults.isRunning
     }}
     @registerAPI={{this.registerAPI}}
-    @onChange={{@appendBestuurseenheid}} as |eenheid|>
+    @onChange={{this.setOption}}
+    as |eenheid|>
+    {{!-- @onChange={{@appendBestuurseenheid}} --}}
       {{eenheid.naam}} ({{eenheid.classificatie.label}})
   </PowerSelect>
 
