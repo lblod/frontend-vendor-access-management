@@ -15,8 +15,11 @@ table:
 modal:
   head-1: Bestuurseenheid Toevoegen
   head-2: Zoek een Bestuurseenheid
-  head-3: Lijst
   button-1: Opslaan
   load-more: Meer bestuurseenheden laden
+  body-1: Selecteer voor welke modules alleen-lezen modus te activeren.
 delete-modal:
   title: Toegangsrechten verwijderen
+modules:
+  tWorshipMinisters: Eredienst Bedienarenbeheer
+  tWorshipMandates: Eredients Mandatenbeheer

@@ -26,21 +26,38 @@
       {{eenheid.naam}} ({{eenheid.classificatie.label}})
   </PowerSelect>
 
-  <AuCard @flex="true" as |c|>
-    <c.header>
-      <AuHeading @level="2" @skin="4">
-        {{t 'vendor.subject.modal.head-3'}}
-      </AuHeading>
-    </c.header>
-
-    <c.content>
-        <div>
-          {{#each @bestuurseenhedenLijst as |eenheid|}}
-            <AuPill class="au-u-margin-bottom-small">
-                {{eenheid.naam}}  <AuIcon @icon="cross" @size="medium" {{on 'click' (fn @removeBestuurseenheid eenheid) }}/>
-            </AuPill>
-          {{/each}}
-        </div>
-    </c.content>
-  </AuCard>
+  {{#if this.selected}}
+    <AuCard
+      @flex={{true}}
+      @textCenter={{false}}
+      @shadow={{false}}
+      @size="regular"
+      @standOut={{true}}
+      @expandable={{false}}
+      @isExpanded={{true}}
+      @isOpenInitially={{true}}
+      @manualControl={{false}}
+      as |c|>
+      <c.header>
+        <AuHeading @level="2" @skin="3">
+          {{this.selected.naam}}
+        </AuHeading>
+        <p class="au-u-italic">
+          {{this.selected.classificatie.label}}
+        </p>
+      </c.header>
+      <c.content>
+        <p>
+          {{t "vendor.subject.modal.body-1"}}
+        </p>
+        <AuCheckboxGroup as |Group|>
+          {{#each-in this.viewOnlyModules as |modeKey modeValue|}}
+            <Group.Checkbox @value={{modeValue}}>
+              {{t (string-concat "vendor.subject.modules." modeKey)}}
+            </Group.Checkbox>
+          {{/each-in}}
+        </AuCheckboxGroup>
+      </c.content>
+    </AuCard>
+  {{/if}}
 </div>

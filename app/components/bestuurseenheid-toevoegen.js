@@ -3,8 +3,10 @@ import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { dropTask, restartableTask, timeout } from 'ember-concurrency';
+import { VIEW_ONLY_MODES } from '/utils/constants';
 
 export default class BestuurseenheidToevoegenComponent extends Component {
+  viewOnlyModules = VIEW_ONLY_MODES;
   @service store;
 
   @tracked selected = undefined;

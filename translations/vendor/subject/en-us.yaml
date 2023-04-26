@@ -15,8 +15,11 @@ table:
 modal:
   head-1: Add administrative unit
   head-2: Search for an administrative unit
-  head-3: List
   button-1: Save
   load-more: Load more administrative units
+  body-1: Select the modules for which to activate read-only modes.
 delete-modal:
   title: Remove access rights
+modules:
+  tWorshipMinisters: Worship Minister Management
+  tWorshipMandates: Worship Mandate Management
