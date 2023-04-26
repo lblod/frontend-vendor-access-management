@@ -1,33 +1,28 @@
 <div class="au-o-flow">
-  <AuCard @flex="true" as |c|>
-    <c.header>
-      <AuHeading @level="2" @skin="4" id="describe-search">
-        {{t 'vendor.subject.modal.head-2'}}
-      </AuHeading>
-    </c.header>
-    <c.content>
-      <PowerSelect
-        @ariaLabel="Zoekbalk"
-        @search={{perform this.search}}
-        @options={{this.options}}
-        @allowClear={{true}}
-        @searchEnabled={{true}}
-        @loadingMessage="Aan het laden..."
-        @searchMessage="Typ om te zoeken"
-        @noMatchesMessage="Geen resultaten"
-        @optionsComponent={{component
-          "infinite-select/options"
-          canLoadMore=this.searchData.canLoadMoreSearchResults
-          loadMore=(perform this.loadMoreSearchResults)
-          isLoadingMore=this.loadMoreSearchResults.isRunning
-        }}
-        @registerAPI={{this.registerAPI}}
-        @renderInPlace={{true}}
-        @onChange={{@appendBestuurseenheid}} as |eenheid|>
-          {{eenheid.naam}} ({{eenheid.classificatie.label}})
-      </PowerSelect>
-    </c.content>
-  </AuCard>
+  <AuHeading @level="2" @skin="4" id="describe-search">
+    {{t 'vendor.subject.modal.head-2'}}
+  </AuHeading>
+  <PowerSelect
+    @ariaLabel="Zoekbalk"
+    @allowClear={{true}}
+    @renderInPlace={{true}}
+    @searchEnabled={{true}}
+    @loadingMessage="Aan het laden..."
+    @noMatchesMessage="Geen resultaten"
+    @searchMessage="Typ om te zoeken"
+    @options={{this.options}}
+    @selected={{this.selected}}
+    @search={{perform this.search}}
+    @optionsComponent={{component
+      "infinite-select/options"
+      canLoadMore=this.searchData.canLoadMoreSearchResults
+      loadMore=(perform this.loadMoreSearchResults)
+      isLoadingMore=this.loadMoreSearchResults.isRunning
+    }}
+    @registerAPI={{this.registerAPI}}
+    @onChange={{@appendBestuurseenheid}} as |eenheid|>
+      {{eenheid.naam}} ({{eenheid.classificatie.label}})
+  </PowerSelect>
 
   <AuCard @flex="true" as |c|>
     <c.header>
