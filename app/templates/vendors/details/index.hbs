@@ -114,12 +114,14 @@
     </:title>
     <:body>
       <BestuurseenheidToevoegen
-        @appendBestuurseenheid={{this.appendBestuurseenheid}}
-        @bestuurseenhedenLijst={{this.bestuurseenhedenLijst}}
-        @removeBestuurseenheid={{this.removeBestuurseenheid}} />
+        @bestuurseenhedenLijst={{this.model}}
+        @onSelect={{this.selectNewBestuurseenheid}}/>
     </:body>
     <:footer>
-      <AuButton @loading={{this.addToList.isRunning}} @loadingMessage={{t "loading.add"}} {{ on 'click' (perform this.addToList)}}>
+      <AuButton
+        @loading={{this.addToList.isRunning}}
+        @loadingMessage={{t "loading.add"}}
+        {{on "click" (perform this.addToList)}}>
         {{t 'vendor.subject.modal.button-1'}}
       </AuButton>
     </:footer>

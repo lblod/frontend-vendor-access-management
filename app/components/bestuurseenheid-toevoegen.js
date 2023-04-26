@@ -7,10 +7,16 @@ import { VIEW_ONLY_MODES } from '/utils/constants';
 
 export default class BestuurseenheidToevoegenComponent extends Component {
   viewOnlyModules = VIEW_ONLY_MODES;
+  selectedViewOnlyModulesSet = new Set();
+
   @service store;
 
   @tracked selected = undefined;
   @tracked searchData;
+
+  get selectedViewOnlyModules() {
+    return [...this.selectedViewOnlyModulesSet];
+  }
 
   get isSearching() {
     return Boolean(this.searchData);
@@ -21,7 +27,6 @@ export default class BestuurseenheidToevoegenComponent extends Component {
       return [];
     }
 
-    //TODO filter through a different list, we're not using pre lists anymore
     return this.searchData.results.filter((bestuurseenheid) => {
       return !this.args.bestuurseenhedenLijst.includes(bestuurseenheid);
     });
@@ -30,6 +35,21 @@ export default class BestuurseenheidToevoegenComponent extends Component {
   @action
   setOption(selected) {
     this.selected = selected;
+    this.changedBestuurseenheid();
+  }
+
+  @action
+  changeViewOnlyModules(event) {
+    if (event.target.checked)
+      this.selectedViewOnlyModulesSet.add(event.target.value);
+    else this.selectedViewOnlyModulesSet.delete(event.target.value);
+    this.changedBestuurseenheid();
+  }
+
+  @action
+  changedBestuurseenheid() {
+    this.selected.viewOnlyModules = this.selectedViewOnlyModules;
+    this.args.onSelect(this.selected);
   }
 
   @restartableTask

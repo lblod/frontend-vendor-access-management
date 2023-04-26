@@ -9,11 +9,11 @@ export default class VendorsDetailsIndexController extends Controller {
   @service router;
   @service store;
   @tracked vendor;
-  @tracked bestuurseenhedenLijst = [];
   @tracked isAddingAdministrativeUnits = false;
   @tracked bestuurseenheidToRemove;
   @tracked filter = '';
   @tracked page = 0;
+  selectedNewBestuurseenheid;
   sort = 'naam';
   size = 20;
 
@@ -32,17 +32,13 @@ export default class VendorsDetailsIndexController extends Controller {
     this.hideDeleteConfirmationModal(true);
   };
 
-    await Promise.all(
-      this.bestuurseenhedenLijst.map(async (bestuurseenheid) => {
-        const vendors = await bestuurseenheid.vendors;
-        vendors.push(this.vendor);
-        await bestuurseenheid.save();
-      })
-    );
   @dropTask
   *addToList() {
+    const vendorsForBestuurseenheid = yield this.selectedNewBestuurseenheid.vendors;
+    vendorsForBestuurseenheid.push(this.vendor);
+    yield this.selectedNewBestuurseenheid.save();
+    this.selectedNewBestuurseenheid = undefined;
 
-    this.bestuurseenhedenLijst = [];
     this.router.refresh('vendors.details');
     this.closeAddModal();
   };
@@ -56,13 +52,8 @@ export default class VendorsDetailsIndexController extends Controller {
   };
 
   @action
-  async appendBestuurseenheid(eenheid) {
-    this.bestuurseenhedenLijst.pushObject(eenheid);
-  }
-
-  @action
-  removeBestuurseenheid(eenheid) {
-    this.bestuurseenhedenLijst = this.bestuurseenhedenLijst.without(eenheid);
+  selectNewBestuurseenheid(bestuurseenheid) {
+    this.selectedNewBestuurseenheid = bestuurseenheid;
   }
 
   @action
