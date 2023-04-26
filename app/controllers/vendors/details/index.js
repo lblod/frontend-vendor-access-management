@@ -28,7 +28,7 @@ export default class VendorsDetailsIndexController extends Controller {
     vendors.splice(vendors.indexOf(this.vendor), 1);
     yield bestuurseenheid.save();
     //We must trigger model(), since the pagination depends on this.
-    this.router.refresh('vendors.details.index');
+    yield this.router.refresh('vendors.details.index');
     this.hideDeleteConfirmationModal(true);
   };
 
