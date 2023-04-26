@@ -4,11 +4,14 @@ export default class BestuurseenheidModel extends Model {
   @attr uri;
   @attr naam;
   @attr alternatieveNaam;
+  @attr viewOnlyModules;
+
   @belongsTo('bestuurseenheid-classificatie-code', {
     async: true,
     inverse: null,
   })
   classificatie;
+
   @hasMany('vendor', {
     async: true,
     inverse: 'canActOnBehalfOf',

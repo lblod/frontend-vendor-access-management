@@ -10,7 +10,8 @@ table:
   not-found: Geen bestuurseenheden aangewezen.
   row-1: Bestuurseenheid
   row-2: Type
-  row-3: Actie
+  row-3: Bewerken toestaan
+  row-4: Actie
 modal:
   head-1: Bestuurseenheid Toevoegen
   head-2: Zoek een Bestuurseenheid
