@@ -10,7 +10,7 @@ table:
   not-found: Geen bestuurseenheden aangewezen.
   row-1: Bestuurseenheid
   row-2: Type
-  row-3: Bewerken toestaan
+  row-3: Alleen-lezen modules
   row-4: Actie
 modal:
   head-1: Bestuurseenheid Toevoegen
@@ -21,5 +21,6 @@ modal:
 delete-modal:
   title: Toegangsrechten verwijderen
 modules:
+  none: Allemaal bewerkbaar
   tWorshipMinisters: Eredienst Bedienarenbeheer
   tWorshipMandates: Eredients Mandatenbeheer
