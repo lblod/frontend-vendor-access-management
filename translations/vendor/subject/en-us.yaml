@@ -22,5 +22,5 @@ delete-modal:
   title: Remove access rights
 modules:
   none: All editable
-  tWorshipMinisters: Worship Minister Management
-  tWorshipMandates: Worship Mandate Management
+  worship-ministers: Worship Minister Management
+  worship-mandates: Worship Mandate Management

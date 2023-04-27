@@ -34,7 +34,7 @@ export default class BestuurseenheidModel extends Model {
           for (const key in VIEW_ONLY_MODES)
             if (VIEW_ONLY_MODES[key] === value) return key;
         })
-        .map((key) => this.intl.t('vendor.subject.modules.' + key))
+        .map((key) => this.intl.t(key))
         .join(', ');
     else return '';
   }

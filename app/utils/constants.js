@@ -1,4 +1,6 @@
 export const VIEW_ONLY_MODES = {
-  tWorshipMinisters: 'LoketLB-eredienstBedienaarGebruiker',
-  tWorshipMandates: 'LoketLB-eredienstMandaatGebruiker',
+  'vendor.subject.modules.worship-ministers':
+    'LoketLB-eredienstBedienaarGebruiker',
+  'vendor.subject.modules.worship-mandates':
+    'LoketLB-eredienstMandaatGebruiker',
 };

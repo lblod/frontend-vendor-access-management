@@ -56,7 +56,7 @@
             <Group.Checkbox
               @value={{modeValue}}
               {{on "change" this.changeViewOnlyModules}}>
-              {{t (concat "vendor.subject.modules." modeKey)}}
+              {{t modeKey}}
             </Group.Checkbox>
           {{/each-in}}
         </AuCheckboxGroup>

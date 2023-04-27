@@ -22,5 +22,5 @@ delete-modal:
   title: Toegangsrechten verwijderen
 modules:
   none: Allemaal bewerkbaar
-  tWorshipMinisters: Eredienst Bedienarenbeheer
-  tWorshipMandates: Eredients Mandatenbeheer
+  worship-ministers: Eredienst Bedienarenbeheer
+  worship-mandates: Eredients Mandatenbeheer
