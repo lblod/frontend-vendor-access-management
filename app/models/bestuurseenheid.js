@@ -1,6 +1,6 @@
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { service } from '@ember/service';
-import { VIEW_ONLY_MODES } from '/utils/constants';
+import { VIEW_ONLY_MODES } from 'frontend-vendor-access-management/utils/constants';
 
 export default class BestuurseenheidModel extends Model {
   @service intl;
