@@ -51,11 +51,10 @@
         </p>
         <AuCheckboxGroup
           @selected={{this.selectedViewOnlyModules}}
+          @onChange={{this.changeViewOnlyModules}}
           as |Group|>
           {{#each-in this.viewOnlyModules as |modeKey modeValue|}}
-            <Group.Checkbox
-              @value={{modeValue}}
-              {{on "change" this.changeViewOnlyModules}}>
+            <Group.Checkbox @value={{modeValue}}>
               {{t modeKey}}
             </Group.Checkbox>
           {{/each-in}}

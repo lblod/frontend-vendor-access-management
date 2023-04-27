@@ -39,7 +39,7 @@ export default class BestuurseenheidToevoegenComponent extends Component {
   }
 
   @action
-  changeViewOnlyModules(event) {
+  changeViewOnlyModules(values, event) {
     if (event.target.checked)
       this.selectedViewOnlyModulesSet.add(event.target.value);
     else this.selectedViewOnlyModulesSet.delete(event.target.value);
