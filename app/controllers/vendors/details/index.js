@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
-import { task, timeout, dropTask } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 export default class VendorsDetailsIndexController extends Controller {
   queryParams = ['filter', 'sort', 'page'];
@@ -21,36 +21,33 @@ export default class VendorsDetailsIndexController extends Controller {
     return Boolean(this.bestuurseenheidToRemove);
   }
 
-  @task
-  *removeFromList() {
+  removeFromList = task(async () => {
     const bestuurseenheid = this.bestuurseenheidToRemove;
-    const vendors = yield bestuurseenheid.vendors;
+    const vendors = await bestuurseenheid.vendors;
     vendors.splice(vendors.indexOf(this.vendor), 1);
-    yield bestuurseenheid.save();
+    await bestuurseenheid.save();
     //We must trigger model(), since the pagination depends on this.
-    yield this.router.refresh('vendors.details.index');
+    await this.router.refresh('vendors.details.index');
     this.hideDeleteConfirmationModal(true);
-  }
+  });
 
-  @dropTask
-  *addToList() {
-    const vendorsForBestuurseenheid = yield this.selectedNewBestuurseenheid
+  addToList = task({ drop: true }, async () => {
+    const vendorsForBestuurseenheid = await this.selectedNewBestuurseenheid
       .vendors;
     vendorsForBestuurseenheid.push(this.vendor);
-    yield this.selectedNewBestuurseenheid.save();
+    await this.selectedNewBestuurseenheid.save();
     this.selectedNewBestuurseenheid = undefined;
 
     this.router.refresh('vendors.details');
     this.closeAddModal();
-  }
+  });
 
-  @dropTask
-  *search(searchValue) {
-    yield timeout(500);
+  search = task({ drop: true }, async (searchValue) => {
+    await timeout(500);
 
     this.filter = searchValue.trim();
     this.resetPagination();
-  }
+  });
 
   @action
   selectNewBestuurseenheid(bestuurseenheid) {

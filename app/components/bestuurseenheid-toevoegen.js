@@ -2,7 +2,7 @@ import { action } from '@ember/object';
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { dropTask, restartableTask, timeout } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 import { VIEW_ONLY_MODES } from 'frontend-vendor-access-management/utils/constants';
 
 export default class BestuurseenheidToevoegenComponent extends Component {
@@ -52,30 +52,28 @@ export default class BestuurseenheidToevoegenComponent extends Component {
     this.args.onSelect(this.selected);
   }
 
-  @restartableTask
-  *search(searchTerm) {
-    yield timeout(600);
+  search = task({ restartable: true }, async (searchTerm) => {
+    await timeout(600);
 
-    let results = yield this.fetchAdministrativeUnits({ searchTerm });
+    const results = await this.fetchAdministrativeUnits({ searchTerm });
 
     this.searchData = new SearchData({
       totalResultAmount: results.meta.count,
       searchTerm: searchTerm,
       results: results.slice(),
     });
-  }
+  });
 
-  @dropTask
-  *loadMoreSearchResults() {
+  loadMoreSearchResults = task({ drop: true }, async () => {
     if (this.isSearching) {
-      let results = yield this.fetchAdministrativeUnits({
+      let results = await this.fetchAdministrativeUnits({
         searchTerm: this.searchData.searchTerm,
         page: ++this.searchData.currentPage,
       });
 
       this.searchData.addSearchResults(results.slice());
     }
-  }
+  });
 
   @action
   registerAPI(api) {
