@@ -30,18 +30,19 @@ export default class VendorsDetailsIndexController extends Controller {
     //We must trigger model(), since the pagination depends on this.
     yield this.router.refresh('vendors.details.index');
     this.hideDeleteConfirmationModal(true);
-  };
+  }
 
   @dropTask
   *addToList() {
-    const vendorsForBestuurseenheid = yield this.selectedNewBestuurseenheid.vendors;
+    const vendorsForBestuurseenheid = yield this.selectedNewBestuurseenheid
+      .vendors;
     vendorsForBestuurseenheid.push(this.vendor);
     yield this.selectedNewBestuurseenheid.save();
     this.selectedNewBestuurseenheid = undefined;
 
     this.router.refresh('vendors.details');
     this.closeAddModal();
-  };
+  }
 
   @dropTask
   *search(searchValue) {
@@ -49,7 +50,7 @@ export default class VendorsDetailsIndexController extends Controller {
 
     this.filter = searchValue.trim();
     this.resetPagination();
-  };
+  }
 
   @action
   selectNewBestuurseenheid(bestuurseenheid) {
