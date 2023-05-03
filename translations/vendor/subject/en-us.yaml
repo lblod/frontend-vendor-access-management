@@ -10,12 +10,17 @@ table:
   not-found: No administrative units assigned.
   row-1: Administrative unit
   row-2: Type
-  row-3: Action
+  row-3: View only modules
+  row-4: Action
 modal:
   head-1: Add administrative unit
   head-2: Search for an administrative unit
-  head-3: List
   button-1: Save
   load-more: Load more administrative units
+  body-1: Select the modules for which to activate read-only modes.
 delete-modal:
   title: Remove access rights
+modules:
+  none: All editable
+  worship-ministers: Worship Minister Management
+  worship-mandates: Worship Mandate Management

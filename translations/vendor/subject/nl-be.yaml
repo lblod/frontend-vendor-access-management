@@ -10,12 +10,17 @@ table:
   not-found: Geen bestuurseenheden aangewezen.
   row-1: Bestuurseenheid
   row-2: Type
-  row-3: Actie
+  row-3: Alleen-lezen modules
+  row-4: Actie
 modal:
   head-1: Bestuurseenheid Toevoegen
   head-2: Zoek een Bestuurseenheid
-  head-3: Lijst
   button-1: Opslaan
   load-more: Meer bestuurseenheden laden
+  body-1: Selecteer voor welke modules alleen-lezen modus te activeren.
 delete-modal:
   title: Toegangsrechten verwijderen
+modules:
+  none: Allemaal bewerkbaar
+  worship-ministers: Eredienst Bedienarenbeheer
+  worship-mandates: Eredients Mandatenbeheer

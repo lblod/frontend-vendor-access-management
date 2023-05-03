@@ -82,9 +82,10 @@
     @isLoading={{this.isLoading}} as |f|>
     <f.content as |c|>
       <c.header>
-          <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
-          <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-3'}}</th>
+        <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
+        <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
+        <th class="data-table__header-title u-visible--tablet-portrait-up">{{t 'vendor.subject.table.row-3'}}</th>
+        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-4'}}</th>
       </c.header>
       <c.body as |bestuurseenheid|>
         <td>
@@ -92,6 +93,15 @@
         </td>
         <td>
           {{bestuurseenheid.classificatie.label}}
+        </td>
+        <td>
+          {{#if bestuurseenheid.hasViewOnlyModules}}
+            {{bestuurseenheid.formattedViewOnlyModules}}
+          {{else}}
+            <p class="au-u-muted au-u-italic">
+              {{t "vendor.subject.modules.none"}}
+            </p>
+          {{/if}}
         </td>
         <td>
           <AuButton @alert="true" @skin="link" @icon="link-broken" {{ on 'click' (fn this.showDeleteConfirmationModal bestuurseenheid)}}>
@@ -110,13 +120,14 @@
     </:title>
     <:body>
       <BestuurseenheidToevoegen
-        @onListBestuurseenheden={{this.listBestuurseenheden}}
-        @appendBestuurseenheid={{this.appendBestuurseenheid}}
-        @bestuurseenhedenLijst={{this.bestuurseenhedenLijst}}
-        @removeBestuurseenheid={{this.removeBestuurseenheid}} />
+        @bestuurseenhedenLijst={{this.model}}
+        @onSelect={{this.selectNewBestuurseenheid}}/>
     </:body>
     <:footer>
-      <AuButton @loading={{this.addToList.isRunning}} @loadingMessage={{t "loading.add"}} {{ on 'click' (perform this.addToList)}}>
+      <AuButton
+        @loading={{this.addToList.isRunning}}
+        @loadingMessage={{t "loading.add"}}
+        {{on "click" (perform this.addToList)}}>
         {{t 'vendor.subject.modal.button-1'}}
       </AuButton>
     </:footer>

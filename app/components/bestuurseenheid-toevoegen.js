@@ -2,13 +2,21 @@ import { action } from '@ember/object';
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { dropTask, restartableTask, timeout } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
+import { VIEW_ONLY_MODES } from 'frontend-vendor-access-management/utils/constants';
 
 export default class BestuurseenheidToevoegenComponent extends Component {
+  viewOnlyModules = VIEW_ONLY_MODES;
+  selectedViewOnlyModulesSet = new Set();
+
   @service store;
 
-  @tracked selected = null;
+  @tracked selected = undefined;
   @tracked searchData;
+
+  get selectedViewOnlyModules() {
+    return [...this.selectedViewOnlyModulesSet];
+  }
 
   get isSearching() {
     return Boolean(this.searchData);
@@ -24,30 +32,48 @@ export default class BestuurseenheidToevoegenComponent extends Component {
     });
   }
 
-  @restartableTask
-  *search(searchTerm) {
-    yield timeout(600);
+  @action
+  setOption(selected) {
+    this.selected = selected;
+    this.changedBestuurseenheid();
+  }
 
-    let results = yield this.fetchAdministrativeUnits({ searchTerm });
+  @action
+  changeViewOnlyModules(values, event) {
+    if (event.target.checked)
+      this.selectedViewOnlyModulesSet.add(event.target.value);
+    else this.selectedViewOnlyModulesSet.delete(event.target.value);
+    this.changedBestuurseenheid();
+  }
+
+  @action
+  changedBestuurseenheid() {
+    this.selected.viewOnlyModules = this.selectedViewOnlyModules;
+    this.args.onSelect(this.selected);
+  }
+
+  search = task({ restartable: true }, async (searchTerm) => {
+    await timeout(600);
+
+    const results = await this.fetchAdministrativeUnits({ searchTerm });
 
     this.searchData = new SearchData({
       totalResultAmount: results.meta.count,
       searchTerm: searchTerm,
       results: results.slice(),
     });
-  }
+  });
 
-  @dropTask
-  *loadMoreSearchResults() {
+  loadMoreSearchResults = task({ drop: true }, async () => {
     if (this.isSearching) {
-      let results = yield this.fetchAdministrativeUnits({
+      let results = await this.fetchAdministrativeUnits({
         searchTerm: this.searchData.searchTerm,
         page: ++this.searchData.currentPage,
       });
 
       this.searchData.addSearchResults(results.slice());
     }
-  }
+  });
 
   @action
   registerAPI(api) {

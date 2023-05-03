@@ -1,49 +1,65 @@
 <div class="au-o-flow">
-  <AuCard @flex="true" as |c|>
-    <c.header>
-      <AuHeading @level="2" @skin="4" id="describe-search">
-        {{t 'vendor.subject.modal.head-2'}}
-      </AuHeading>
-    </c.header>
-    <c.content>
-      <PowerSelect
-        @ariaLabel="Zoekbalk"
-        @search={{perform this.search}}
-        @options={{this.options}}
-        @allowClear={{true}}
-        @searchEnabled={{true}}
-        @loadingMessage="Aan het laden..."
-        @searchMessage="Typ om te zoeken"
-        @noMatchesMessage="Geen resultaten"
-        @optionsComponent={{component
-          "infinite-select/options"
-          canLoadMore=this.searchData.canLoadMoreSearchResults
-          loadMore=(perform this.loadMoreSearchResults)
-          isLoadingMore=this.loadMoreSearchResults.isRunning
-        }}
-        @registerAPI={{this.registerAPI}}
-        @renderInPlace={{true}}
-        @onChange={{@appendBestuurseenheid}} as |eenheid|>
-          {{eenheid.naam}} ({{eenheid.classificatie.label}})
-      </PowerSelect>
-    </c.content>
-  </AuCard>
+  <AuHeading @level="2" @skin="4" id="describe-search">
+    {{t 'vendor.subject.modal.head-2'}}
+  </AuHeading>
+  <PowerSelect
+    @ariaLabel="Zoekbalk"
+    @allowClear={{true}}
+    @renderInPlace={{true}}
+    @searchEnabled={{true}}
+    @loadingMessage="Aan het laden..."
+    @noMatchesMessage="Geen resultaten"
+    @searchMessage="Typ om te zoeken"
+    @options={{this.options}}
+    @selected={{this.selected}}
+    @search={{perform this.search}}
+    @optionsComponent={{component
+      "infinite-select/options"
+      canLoadMore=this.searchData.canLoadMoreSearchResults
+      loadMore=(perform this.loadMoreSearchResults)
+      isLoadingMore=this.loadMoreSearchResults.isRunning
+    }}
+    @registerAPI={{this.registerAPI}}
+    @onChange={{this.setOption}}
+    as |eenheid|>
+      {{eenheid.naam}} ({{eenheid.classificatie.label}})
+  </PowerSelect>
 
-  <AuCard @flex="true" as |c|>
-    <c.header>
-      <AuHeading @level="2" @skin="4">
-        {{t 'vendor.subject.modal.head-3'}}
-      </AuHeading>
-    </c.header>
-
-    <c.content>
-        <div>
-          {{#each @bestuurseenhedenLijst as |eenheid|}}
-            <AuPill class="au-u-margin-bottom-small">
-                {{eenheid.naam}}  <AuIcon @icon="cross" @size="medium" {{on 'click' (fn @removeBestuurseenheid eenheid) }}/>
-            </AuPill>
-          {{/each}}
-        </div>
-    </c.content>
-  </AuCard>
+  {{#if this.selected}}
+    <AuCard
+      @flex={{true}}
+      @textCenter={{false}}
+      @shadow={{false}}
+      @size="regular"
+      @standOut={{true}}
+      @expandable={{false}}
+      @isExpanded={{true}}
+      @isOpenInitially={{true}}
+      @manualControl={{false}}
+      as |c|>
+      <c.header>
+        <AuHeading @level="2" @skin="3">
+          {{this.selected.naam}}
+        </AuHeading>
+        <p class="au-u-italic">
+          {{this.selected.classificatie.label}}
+        </p>
+      </c.header>
+      <c.content>
+        <p>
+          {{t "vendor.subject.modal.body-1"}}
+        </p>
+        <AuCheckboxGroup
+          @selected={{this.selectedViewOnlyModules}}
+          @onChange={{this.changeViewOnlyModules}}
+          as |Group|>
+          {{#each-in this.viewOnlyModules as |modeKey modeValue|}}
+            <Group.Checkbox @value={{modeValue}}>
+              {{t modeKey}}
+            </Group.Checkbox>
+          {{/each-in}}
+        </AuCheckboxGroup>
+      </c.content>
+    </AuCard>
+  {{/if}}
 </div>
