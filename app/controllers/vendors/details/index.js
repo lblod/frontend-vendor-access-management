@@ -25,6 +25,7 @@ export default class VendorsDetailsIndexController extends Controller {
     const bestuurseenheid = this.bestuurseenheidToRemove;
     const vendors = await bestuurseenheid.vendors;
     vendors.splice(vendors.indexOf(this.vendor), 1);
+    bestuurseenheid.viewOnlyModules = [];
     await bestuurseenheid.save();
     //We must trigger model(), since the pagination depends on this.
     await this.router.refresh('vendors.details.index');
