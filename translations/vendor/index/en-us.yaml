@@ -6,3 +6,6 @@ table:
   row-2: URI
   row-3: Action
   button-1: Manage access rights
+alert:
+  title: Note
+  message: Vendor management right changes are automatically propagated to Loket and Worship Decisions Database.

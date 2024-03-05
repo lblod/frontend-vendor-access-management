@@ -2,13 +2,13 @@
 <div class="au-o-body-container au-o-box au-o-layout">
   <div class="au-u-margin-top au-u-margin-bottom">
     <AuAlert
-      @title="Ter info"
+      @title={{(t "vendor.index.alert.title")}}
       @skin="warning"
       @icon="circle-info"
       @size="small"
       @closable={{false}}
     >
-      <p>Wijzigingen van de rechten worden automatisch gepropageerd naar Loket en DatabankErediensten.</p>
+      <p>{{(t "vendor.index.alert.message")}}</p>
     </AuAlert>
 
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">

@@ -6,3 +6,6 @@ table:
   row-2: URI
   row-3: Actie
   button-1: Beheer toegangsrechten
+alert:
+  title: Ter informatie
+  message: Wijzigingen van de rechten worden automatisch gepropageerd naar Loket en DatabankErediensten.
