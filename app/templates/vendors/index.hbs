@@ -1,6 +1,15 @@
 {{page-title (t "vendor.index.main.head-1")}}
 <div class="au-o-body-container au-o-box au-o-layout">
   <div class="au-u-margin-top au-u-margin-bottom">
+    <AuAlert
+      @title={{(t "vendor.index.alert.title")}}
+      @skin="warning"
+      @icon="circle-info"
+      @size="small"
+      @closable={{false}}
+    >
+      <p>{{(t "vendor.index.alert.message")}}</p>
+    </AuAlert>
 
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">
       {{t 'vendor.index.main.head-1'}}
