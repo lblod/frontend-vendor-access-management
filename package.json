@@ -93,9 +93,6 @@
     "tracked-built-ins": "^3.1.1",
     "webpack": "^5.78.0"
   },
-  "devDependenciesNotes": {
-    "ember-modifier": "not all our deps support v4 yet, so we stick with v3 for now"
-  },
   "engines": {
     "node": ">= 22"
   },
