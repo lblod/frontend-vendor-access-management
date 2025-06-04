@@ -60,3 +60,11 @@
   right: 0;
   top: 0;
 }
+
+// Mock login styles
+.mock-account-button {
+  display: block; // AuButtons are inline-flex by default
+  line-height: normal;
+  height: auto; // override the fixed height of the button height
+  border: .1rem #c6cdd3 solid;
+}

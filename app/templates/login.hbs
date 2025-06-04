@@ -1,26 +1,46 @@
 <main id="content">
   <AuContentHeader @titlePartOne="Vlaanderen" @titlePartTwo="is lokaal bestuur">
-    <img sizes="50vw" src="/assets/images/loket-header-1600.jpg"
-         srcset="/assets/images/loket-header-320.jpg 320w, /assets/images/loket-header-1024.jpg 1024w, /assets/images/loket-header-1600.jpg 1600w"
-         alt="Foto van een laptop met daarop het vlaanderen logo.">
+    <img
+      sizes="50vw"
+      src="/assets/images/loket-header-1600.jpg"
+      srcset="/assets/images/loket-header-320.jpg 320w, /assets/images/loket-header-1024.jpg 1024w, /assets/images/loket-header-1600.jpg 1600w"
+      alt="Foto van een laptop met daarop het vlaanderen logo."
+    />
   </AuContentHeader>
 
   <div class="au-o-region-large">
     <div class="au-o-layout">
       <MockLogin as |login|>
         {{#if this.queryStore.isRunning}}
-          <AuLoader @size="small"/>
+          <AuLoader @size="small" />
         {{else}}
           {{#if login.errorMessage}}
-            <AuAlert @icon="alert-triangle" @title={{login.errorMessage}} @skin="warning"/>
+            <AuAlert
+              @icon="alert-triangle"
+              @title={{login.errorMessage}}
+              @skin="warning"
+            />
           {{/if}}
-          <login.each-account @accounts={{this.model}} as |account|>
-            <div class="au-o-box au-o-box--small au-c-card au-u-margin-bottom-small">
-              <p>
-                {{account.gebruiker.voornaam}} {{account.gebruiker.achternaam}}
-              </p>
-            </div>
-          </login.each-account>
+          {{#if this.model.length}}
+            <ul class="au-o-flow au-o-flow--small au-u-margin-bottom-small">
+              {{#each this.model as |account|}}
+                <li>
+                  <AuButton
+                    {{!TODO: this should be a tertiary button, but Appuniversum doesn"t support that yet}}
+                    @skin="secondary"
+                    class="mock-account-button au-u-padding-small au-u-1-1 au-u-text-left"
+                    {{on
+                      "click"
+                      (fn login.login account.id account.gebruiker.group.id)
+                    }}
+                  >
+                    {{account.gebruiker.voornaam}}
+                    {{account.gebruiker.achternaam}}
+                  </AuButton>
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
         {{/if}}
       </MockLogin>
     </div>
