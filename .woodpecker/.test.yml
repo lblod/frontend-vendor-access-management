@@ -1,14 +1,14 @@
 steps:
   install:
-    image: danlynn/ember-cli:4.4.0-node_16.15
+    image: danlynn/ember-cli:6.4.0-node_22.15
     commands:
       - npm install
   lint:
-    image: danlynn/ember-cli:4.4.0-node_16.15
+    image: danlynn/ember-cli:6.4.0-node_22.15
     commands:
       - npm run lint
   tests:
-    image: danlynn/ember-cli:4.4.0-node_16.15
+    image: danlynn/ember-cli:6.4.0-node_22.15
     commands:
       - npm run test:ember
 when:

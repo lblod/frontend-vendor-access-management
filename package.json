@@ -90,7 +90,7 @@
     "ember-data": "We install v4.11 here since older versions don't want to build under Embroider, even after disabling the package rules and adapters"
   },
   "engines": {
-    "node": "14.* || 16.* || >= 18"
+    "node": ">= 22"
   },
   "ember": {
     "edition": "octane"
