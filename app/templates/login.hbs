@@ -12,7 +12,7 @@
     <div class="au-o-layout">
       <MockLogin as |login|>
         {{#if this.queryStore.isRunning}}
-          <AuLoader @padding="small" />
+          <AuLoader>{{t "loading.generic"}}</AuLoader>
         {{else}}
           {{#if login.errorMessage}}
             <AuAlert

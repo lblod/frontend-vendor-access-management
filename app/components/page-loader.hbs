@@ -1,17 +1,7 @@
-{{!
-  Copied from the loket implementation: https://github.com/lblod/frontend-loket/blob/84a674f56d4bd68e4c2ff7a4f0bdbc267ecbdaf0/app/components/page-loader.hbs
-  This probably needs to be moved to Appuniversum since it matches the Webuniversum loader.
-}}
-<div
-  class="au-o-box au-u-flex au-u-flex--column au-u-flex--vertical-center"
-  ...attributes
->
-  <AuLoader @padding="small" @disableMessage={{true}} />
-  <p class="au-u-para">
-    {{~#if (has-block)~}}
-      {{yield}}
-    {{~else~}}
-      Aan het laden
-    {{~/if~}}
-  </p>
-</div>
+<AuLoader class="au-o-box">
+  {{~#if (has-block)~}}
+    {{yield}}
+  {{~else~}}
+    Aan het laden
+  {{~/if~}}
+</AuLoader>
