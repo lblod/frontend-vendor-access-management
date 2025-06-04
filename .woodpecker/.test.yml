@@ -2,7 +2,7 @@ steps:
   install:
     image: danlynn/ember-cli:6.4.0-node_22.15
     commands:
-      - npm install
+      - npm ci
   lint:
     image: danlynn/ember-cli:6.4.0-node_22.15
     commands:
