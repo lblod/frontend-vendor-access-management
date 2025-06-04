@@ -27,7 +27,7 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
-    "@appuniversum/ember-appuniversum": "^2.4.2",
+    "@appuniversum/ember-appuniversum": "^3.11.0",
     "@babel/eslint-parser": "^7.21.3",
     "@babel/plugin-proposal-decorators": "^7.21.0",
     "@ember/optional-features": "^2.0.0",
@@ -65,9 +65,9 @@
     "ember-focus-trap": "^1.0.1",
     "ember-intl": "^5.5.0",
     "ember-load-initializers": "^2.1.2",
-    "ember-modifier": "^3.2.7",
+    "ember-modifier": "^4.2.2",
     "ember-page-title": "^7.0.0",
-    "ember-power-select": "^6.0.1",
+    "ember-power-select": "^7.0.0",
     "ember-qunit": "^6.2.0",
     "ember-resolver": "^10.0.0",
     "ember-simple-auth": "^8.0.0",
