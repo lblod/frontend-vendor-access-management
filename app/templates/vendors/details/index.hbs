@@ -1,6 +1,12 @@
 {{page-title (t "vendor.subject.main.head-1")}}
 {{page-title this.vendor.name}}
-<AuToolbar @size="medium" @skin="tint" @border="bottom" class="au-c-toolbar--sticky" as |Group|>
+<AuToolbar
+  @size="medium"
+  @skin="tint"
+  @border="bottom"
+  class="au-c-toolbar--sticky"
+  as |Group|
+>
   <Group>
     <ul class="au-c-list-horizontal au-c-list-horizontal--small">
       <li class="au-c-list-horizontal__item">
@@ -11,14 +17,20 @@
     </ul>
   </Group>
 </AuToolbar>
-<div class="au-o-body-container au-o-box au-o-layout au-u-margin-top au-u-margin-bottom">
-  <AuHeading>{{t 'vendor.subject.main.head-1'}}</AuHeading>
-  <div class="au-u-flex au-u-flex--wrap au-u-flex--vertical-baseline au-u-margin-bottom">
+<div
+  class="au-o-body-container au-o-box au-o-layout au-u-margin-top au-u-margin-bottom"
+>
+  <AuHeading>{{t "vendor.subject.main.head-1"}}</AuHeading>
+  <div
+    class="au-u-flex au-u-flex--wrap au-u-flex--vertical-baseline au-u-margin-bottom"
+  >
     <p class="au-u-h3 au-u-margin-right-tiny">
       {{this.vendor.name}}
     </p>
     <AuHelpText>
-      (<AuLinkExternal href={{this.vendor.uri}}>{{this.vendor.uri}}</AuLinkExternal>)
+      (<AuLinkExternal
+        href={{this.vendor.uri}}
+      >{{this.vendor.uri}}</AuLinkExternal>)
     </AuHelpText>
   </div>
   <AuAccordion
@@ -28,64 +40,98 @@
     @buttonLabel={{t "vendor.subject.card.head-1"}}
     class="au-u-max-width-xsmall"
   >
-    <div class="au-u-flex">
-      <div class="c-api-key au-u-margin-right-tiny">
-        <AuInput
-          id="input-regular"
-          @width="block" @type={{if this.hiddenKeyState "text" "password"}}
-          @value={{this.vendor.key}}
-          readonly
-          class="c-api-key__input"
-        />
-        <AuButton
-          @skin="naked"
-          @icon={{if this.hiddenKeyState "not-visible" "visible"}}
-          @hideText={{true}}
-          {{on 'click' (toggle "hiddenKeyState" this)}}
-          class="c-api-key__visibility-toggle"
-        >{{t (if this.hiddenKeyState "actions.hide" "actions.show")}}</AuButton>
+    {{! The AuContent wrapper is not really needed, but we depend on it for our hacky style overrides
+        TODO: remove the wrapper once the style bleeding issues are fixed in Appuniversum:
+        https://github.com/appuniversum/ember-appuniversum/issues/542
+    }}
+    <AuContent>
+      <div class="au-u-flex">
+        <div class="c-api-key au-u-margin-right-tiny">
+          <AuInput
+            @width="block"
+            @disabled={{true}}
+            id="input-regular"
+            type={{if this.hiddenKeyState "text" "password"}}
+            value={{this.vendor.key}}
+            class="c-api-key__input"
+          />
+          <AuButton
+            @skin="naked"
+            @icon={{if this.hiddenKeyState "not-visible" "visible"}}
+            @hideText={{true}}
+            {{on "click" (toggle "hiddenKeyState" this)}}
+            class="c-api-key__visibility-toggle"
+          >
+            {{t (if this.hiddenKeyState "actions.hide" "actions.show")}}
+          </AuButton>
         </div>
-      <AuButton
-        @icon="copy"
-        @skin="secondary"
-        {{on 'click' (fn this.copyToClipboard this.vendor.key)}}
-      >{{t 'actions.copy'}}</AuButton>
-    </div>
+        <AuButton
+          @icon="copy"
+          @skin="secondary"
+          {{on "click" (fn this.copyToClipboard this.vendor.key)}}
+        >
+          {{t "actions.copy"}}
+        </AuButton>
+      </div>
+    </AuContent>
   </AuAccordion>
 
   <AuToolbar class="au-o-region" as |Group|>
     <Group>
-      <AuHeading @skin='3'>{{t 'vendor.subject.table.head-1'}}</AuHeading>
+      <AuHeading @skin="3">{{t "vendor.subject.table.head-1"}}</AuHeading>
     </Group>
     <Group class="au-u-flex au-u-flex--vertical-center">
       <div>
         <label for="search" class="au-u-hidden-visually">Vul uw zoekterm in</label>
 
-        {{! TODO: Replace this with `AuInput` once we get rid of 2-way-binding }}
-        <span class="au-c-input-wrapper au-c-input-wrapper--left">
-          <AuIcon @icon="search" />
-          <input
-            value={{this.filter}}
-            id="search"
-            class="au-c-input"
-            placeholder={{t "search.placeholder"}}
-            {{on "input" (perform this.search value="target.value")}}
-          />
-        </span>
+        <AuInput
+          @icon="search"
+          id="search"
+          value={{this.filter}}
+          placeholder={{t "search.placeholder"}}
+          {{on "input" (perform this.search value="target.value")}}
+        />
       </div>
-      <AuButton @icon="add" {{on "click" this.showAddModal}}>{{t "vendor.subject.table.button-1"}}</AuButton>
+      <AuButton @icon="add" {{on "click" this.showAddModal}}>
+        {{t "vendor.subject.table.button-1"}}
+      </AuButton>
     </Group>
   </AuToolbar>
 
-  <AuDataTable @content={{this.model}} @fields="Vendors"
-    @noDataMessage={{t 'vendor.subject.table.not-found'}} @sort={{this.sort}} @size={{this.size}} @page={{this.page}}
-    @isLoading={{this.isLoading}} as |f|>
+  <AuDataTable
+    @content={{this.model}}
+    @fields="Vendors"
+    @noDataMessage={{t "vendor.subject.table.not-found"}}
+    @sort={{this.sort}}
+    @size={{this.size}}
+    @page={{this.page}}
+    @isLoading={{this.isLoading}}
+    as |f|
+  >
     <f.content as |c|>
       <c.header>
-        <AuDataTableThSortable @field="naam" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-1'}} @class="data-table__header-title" />
-        <AuDataTableThSortable @field="classificatie.label" @currentSorting={{this.sort}} @label={{t 'vendor.subject.table.row-2'}} @class="data-table__header-title" />
-        <th class="data-table__header-title u-visible--tablet-portrait-up">{{t 'vendor.subject.table.row-3'}}</th>
-        <th class="data-table__header-title u-visible--tablet-portrait-up" style="max-width: 5rem;" {{!template-lint-disable no-inline-styles}}>{{t 'vendor.subject.table.row-4'}}</th>
+        <AuDataTableThSortable
+          @field="naam"
+          @currentSorting={{this.sort}}
+          @label={{t "vendor.subject.table.row-1"}}
+          @class="data-table__header-title"
+        />
+        <AuDataTableThSortable
+          @field="classificatie.label"
+          @currentSorting={{this.sort}}
+          @label={{t "vendor.subject.table.row-2"}}
+          @class="data-table__header-title"
+        />
+        <th class="data-table__header-title u-visible--tablet-portrait-up">
+          {{t "vendor.subject.table.row-3"}}
+        </th>
+        <th
+          class="data-table__header-title u-visible--tablet-portrait-up"
+          style="max-width: 5rem;"
+          {{!template-lint-disable no-inline-styles}}
+        >
+          {{t "vendor.subject.table.row-4"}}
+        </th>
       </c.header>
       <c.body as |bestuurseenheid|>
         <td>
@@ -104,7 +150,12 @@
           {{/if}}
         </td>
         <td>
-          <AuButton @alert="true" @skin="link" @icon="link-broken" {{ on 'click' (fn this.showDeleteConfirmationModal bestuurseenheid)}}>
+          <AuButton
+            @alert="true"
+            @skin="link"
+            @icon="link-broken"
+            {{on "click" (fn this.showDeleteConfirmationModal bestuurseenheid)}}
+          >
             {{t "vendor.subject.table.button-remove"}}
           </AuButton>
         </td>
@@ -114,21 +165,27 @@
 </div>
 
 {{#if this.isAddingAdministrativeUnits}}
-  <AuModal @modalOpen={{true}} @closeModal={{this.closeAddModal}} @overflow={{true}}>
+  <AuModal
+    @modalOpen={{true}}
+    @closeModal={{this.closeAddModal}}
+    @overflow={{true}}
+  >
     <:title>
-      {{t 'vendor.subject.modal.head-1'}}
+      {{t "vendor.subject.modal.head-1"}}
     </:title>
     <:body>
       <BestuurseenheidToevoegen
         @bestuurseenhedenLijst={{this.model}}
-        @onSelect={{this.selectNewBestuurseenheid}}/>
+        @onSelect={{this.selectNewBestuurseenheid}}
+      />
     </:body>
     <:footer>
       <AuButton
         @loading={{this.addToList.isRunning}}
         @loadingMessage={{t "loading.add"}}
-        {{on "click" (perform this.addToList)}}>
-        {{t 'vendor.subject.modal.button-1'}}
+        {{on "click" (perform this.addToList)}}
+      >
+        {{t "vendor.subject.modal.button-1"}}
       </AuButton>
     </:footer>
   </AuModal>
@@ -140,10 +197,20 @@
       {{t "vendor.subject.delete-modal.title"}}
     </:title>
     <:footer>
-      <AuButton @alert={{true}} @icon="link-broken" @loading={{this.removeFromList.isRunning}} @loadingMessage={{t "loading.remove"}} {{ on 'click' (perform this.removeFromList)}}>
+      <AuButton
+        @alert={{true}}
+        @icon="link-broken"
+        @loading={{this.removeFromList.isRunning}}
+        @loadingMessage={{t "loading.remove"}}
+        {{on "click" (perform this.removeFromList)}}
+      >
         {{t "actions.remove"}}
       </AuButton>
-      <AuButton @skin="secondary" @disabled={{this.removeFromList.isRunning}} {{ on 'click' this.hideDeleteConfirmationModal}}>
+      <AuButton
+        @skin="secondary"
+        @disabled={{this.removeFromList.isRunning}}
+        {{on "click" this.hideDeleteConfirmationModal}}
+      >
         {{t "actions.cancel"}}
       </AuButton>
     </:footer>

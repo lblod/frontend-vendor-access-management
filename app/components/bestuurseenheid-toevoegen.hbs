@@ -1,6 +1,6 @@
 <div class="au-o-flow">
   <AuHeading @level="2" @skin="4" id="describe-search">
-    {{t 'vendor.subject.modal.head-2'}}
+    {{t "vendor.subject.modal.head-2"}}
   </AuHeading>
   <PowerSelect
     @ariaLabel="Zoekbalk"
@@ -21,8 +21,10 @@
     }}
     @registerAPI={{this.registerAPI}}
     @onChange={{this.setOption}}
-    as |eenheid|>
-      {{eenheid.naam}} ({{eenheid.classificatie.label}})
+    as |eenheid|
+  >
+    {{eenheid.naam}}
+    ({{eenheid.classificatie.label}})
   </PowerSelect>
 
   {{#if this.selected}}
@@ -36,7 +38,8 @@
       @isExpanded={{true}}
       @isOpenInitially={{true}}
       @manualControl={{false}}
-      as |c|>
+      as |c|
+    >
       <c.header>
         <AuHeading @level="2" @skin="3">
           {{this.selected.naam}}
@@ -46,19 +49,22 @@
         </p>
       </c.header>
       <c.content>
-        <p>
-          {{t "vendor.subject.modal.body-1"}}
-        </p>
-        <AuCheckboxGroup
-          @selected={{this.selectedViewOnlyModules}}
-          @onChange={{this.changeViewOnlyModules}}
-          as |Group|>
-          {{#each-in this.viewOnlyModules as |modeKey modeValue|}}
-            <Group.Checkbox @value={{modeValue}}>
-              {{t modeKey}}
-            </Group.Checkbox>
-          {{/each-in}}
-        </AuCheckboxGroup>
+        <AuContent>
+          <p>
+            {{t "vendor.subject.modal.body-1"}}
+          </p>
+          <AuCheckboxGroup
+            @selected={{this.selectedViewOnlyModules}}
+            @onChange={{this.changeViewOnlyModules}}
+            as |Group|
+          >
+            {{#each-in this.viewOnlyModules as |modeKey modeValue|}}
+              <Group.Checkbox @value={{modeValue}}>
+                {{t modeKey}}
+              </Group.Checkbox>
+            {{/each-in}}
+          </AuCheckboxGroup>
+        </AuContent>
       </c.content>
     </AuCard>
   {{/if}}
