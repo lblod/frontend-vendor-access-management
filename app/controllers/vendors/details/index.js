@@ -43,7 +43,7 @@ export default class VendorsDetailsIndexController extends Controller {
     this.closeAddModal();
   });
 
-  search = task({ drop: true }, async (searchValue) => {
+  search = task({ restartable: true }, async (searchValue) => {
     await timeout(500);
 
     this.filter = searchValue.trim();
