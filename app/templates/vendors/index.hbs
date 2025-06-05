@@ -12,16 +12,29 @@
     </AuAlert>
 
     <AuHeading @level="1" @skin="2" class="au-u-margin-bottom">
-      {{t 'vendor.index.main.head-1'}}
+      {{t "vendor.index.main.head-1"}}
     </AuHeading>
 
-    <AuDataTable @content={{this.model}} @fields="Vendors" @noDataMessage="Geen vendors gevonden" @sort={{this.sort}}
-      @size={{this.size}} @page={{this.page}} @isLoading={{this.isLoading}} as |f|>
+    <AuDataTable
+      @content={{this.model}}
+      @fields="Vendors"
+      @noDataMessage="Geen vendors gevonden"
+      @sort={{this.sort}}
+      @size={{this.size}}
+      @page={{this.page}}
+      @isLoading={{this.isLoading}}
+      as |f|
+    >
       <f.content as |c|>
         <c.header>
-          <AuDataTableThSortable @field="name" @currentSorting={{this.sort}} @label={{t 'vendor.index.table.row-1'}} @class="data-table__header-title" />
-          <th>{{t 'vendor.index.table.row-2'}}</th>
-          <th>{{t 'vendor.index.table.row-3'}}</th>
+          <AuDataTableThSortable
+            @field="name"
+            @currentSorting={{this.sort}}
+            @label={{t "vendor.index.table.row-1"}}
+            @class="data-table__header-title"
+          />
+          <th>{{t "vendor.index.table.row-2"}}</th>
+          <th>{{t "vendor.index.table.row-3"}}</th>
         </c.header>
         <c.body as |vendor|>
           <td>
@@ -31,7 +44,11 @@
             {{vendor.uri}}
           </td>
           <td>
-            <AuLink @route="vendors.details" @model={{vendor.id}} @icon="settings">{{t 'vendor.index.table.button-1'}}</AuLink>
+            <AuLink
+              @route="vendors.details"
+              @model={{vendor.id}}
+              @icon="settings"
+            >{{t "vendor.index.table.button-1"}}</AuLink>
           </td>
         </c.body>
       </f.content>

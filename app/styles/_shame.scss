@@ -1,4 +1,4 @@
-.au-c-modal__body{
+.au-c-modal__body {
   overflow: visible;
 }
 
@@ -8,9 +8,11 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   @if unitless($ember-power-select-line-height) {
-    max-height: #{$ember-power-select-number-of-visible-options * $ember-power-select-line-height}em;
+    max-height: #{$ember-power-select-number-of-visible-options *
+      $ember-power-select-line-height}em;
   } @else {
-    max-height: $ember-power-select-number-of-visible-options * $ember-power-select-line-height;
+    max-height: $ember-power-select-number-of-visible-options *
+      $ember-power-select-line-height;
   }
 
   .ember-power-select-options {
@@ -20,7 +22,7 @@
 
 .au-c-content ul.ember-power-select-options {
   list-style: none;
-  margin-left: 0
+  margin-left: 0;
 }
 
 // The main header content should appear in front of other page contents (table headers, sticky toolbars, etc)
@@ -42,7 +44,7 @@
 }
 
 .au-c-accordion .au-c-content .au-c-button.au-c-button--icon-only {
-  padding: 0 calc(( 3.2rem - var(--au-icon-size-medium) ) / 2);
+  padding: 0 calc((3.2rem - var(--au-icon-size-medium)) / 2);
 }
 
 .c-api-key {
@@ -66,5 +68,5 @@
   display: block; // AuButtons are inline-flex by default
   line-height: normal;
   height: auto; // override the fixed height of the button height
-  border: .1rem #c6cdd3 solid;
+  border: 0.1rem #c6cdd3 solid;
 }

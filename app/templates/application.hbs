@@ -7,9 +7,18 @@
       </li>
       {{#if this.session.isAuthenticated}}
         <li class="au-c-list-horizontal__item">
-          <AuDropdown @title={{this.currentSession.user.fullName}} @alignment="right">
+          <AuDropdown
+            @title={{this.currentSession.user.fullName}}
+            @alignment="right"
+          >
             {{!template-lint-disable require-context-role}}
-            <AuButton @icon="logout" @skin="link" role="menuitem" require-context-role {{on "click" this.logout}}>
+            <AuButton
+              @icon="logout"
+              @skin="link"
+              role="menuitem"
+              require-context-role
+              {{on "click" this.logout}}
+            >
               {{t "application.header.logout"}}
             </AuButton>
           </AuDropdown>
@@ -22,11 +31,14 @@
       {{outlet}}
       <AuMainFooter>
         <AuHeading @level="2" @skin="4">
-          vendor-management.lblod.info is een officiële website van de Vlaamse overheid
+          vendor-management.lblod.info is een officiële website van de Vlaamse
+          overheid
         </AuHeading>
         <AuContent @skin="small">
           <p>Uitgegeven door
-            <AuLinkExternal href="https://www.vlaanderen.be/organisaties/administratieve-diensten-van-de-vlaamse-overheid/beleidsdomein-kanselarij-en-bestuur/agentschap-binnenlands-bestuur">
+            <AuLinkExternal
+              href="https://www.vlaanderen.be/organisaties/administratieve-diensten-van-de-vlaamse-overheid/beleidsdomein-kanselarij-en-bestuur/agentschap-binnenlands-bestuur"
+            >
               Agentschap Binnenlands Bestuur
             </AuLinkExternal>
           </p>

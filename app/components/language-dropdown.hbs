@@ -1,4 +1,7 @@
-<AuDropdown @title={{this.languageLabel this.intl.primaryLocale}} @alignment="right">
+<AuDropdown
+  @title={{this.languageLabel this.intl.primaryLocale}}
+  @alignment="right"
+>
   {{#each-in this.supportedLanguages as |language label|}}
     {{!template-lint-disable require-context-role}}
     {{#if (not (this.isActiveLanguage language))}}
