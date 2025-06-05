@@ -11,6 +11,11 @@ module.exports = function (defaults) {
         },
       },
     },
+    emberData: {
+      deprecations: {
+        DEPRECATE_STORE_EXTENDS_EMBER_OBJECT: false,
+      },
+    },
   });
 
   const { Webpack } = require('@embroider/webpack');
