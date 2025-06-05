@@ -20,7 +20,7 @@ module.exports = function (defaults) {
     staticHelpers: true,
     staticModifiers: true,
     staticComponents: true,
-    extraPublicTrees: [],
+    staticEmberSource: true,
     skipBabel: [
       {
         package: 'qunit',
