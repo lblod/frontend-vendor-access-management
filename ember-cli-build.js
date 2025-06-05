@@ -14,7 +14,6 @@ module.exports = function (defaults) {
   });
 
   const { Webpack } = require('@embroider/webpack');
-
   return require('@embroider/compat').compatBuild(app, Webpack, {
     staticAddonTestSupportTrees: true,
     staticAddonTrees: true,
@@ -22,5 +21,10 @@ module.exports = function (defaults) {
     staticModifiers: true,
     staticComponents: true,
     extraPublicTrees: [],
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
   });
 };
