@@ -33,8 +33,8 @@ export default class VendorsDetailsIndexController extends Controller {
   });
 
   addToList = task({ drop: true }, async () => {
-    const vendorsForBestuurseenheid = await this.selectedNewBestuurseenheid
-      .vendors;
+    const vendorsForBestuurseenheid =
+      await this.selectedNewBestuurseenheid.vendors;
     vendorsForBestuurseenheid.push(this.vendor);
     await this.selectedNewBestuurseenheid.save();
     this.selectedNewBestuurseenheid = undefined;
