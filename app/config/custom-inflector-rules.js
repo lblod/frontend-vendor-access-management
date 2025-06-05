@@ -1,6 +1,3 @@
-import Inflector from 'ember-inflector';
+import { irregular } from '@ember-data/request-utils/string';
 
-const inflector = Inflector.inflector;
-
-inflector.irregular('bestuurseenheid', 'bestuurseenheden');
-inflector.irregular('vendor', 'vendors');
+irregular('bestuurseenheid', 'bestuurseenheden');
