@@ -7,6 +7,7 @@ import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
+  importSync('./ember-inspector-support');
 }
 
 export default class App extends Application {
