@@ -4,7 +4,7 @@ import { service } from '@ember/service';
 import DataTableRouteMixin from 'ember-data-table/mixins/route';
 
 export default class VendorsDetailsIndexRoute extends Route.extend(
-  DataTableRouteMixin
+  DataTableRouteMixin,
 ) {
   queryParams = {
     filter: {
