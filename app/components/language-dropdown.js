@@ -20,6 +20,6 @@ export default class LanguageDropdownComponent extends Component {
 
   @action
   changeLanguage(lang) {
-    this.intl.set('locale', lang);
+    this.intl.setLocale([lang]);
   }
 }
