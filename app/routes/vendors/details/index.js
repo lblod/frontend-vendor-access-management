@@ -1,11 +1,9 @@
-/* eslint-disable ember/no-mixins */
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
-import DataTableRouteMixin from 'ember-data-table/mixins/route';
 
-export default class VendorsDetailsIndexRoute extends Route.extend(
-  DataTableRouteMixin,
-) {
+export default class VendorsDetailsIndexRoute extends Route {
+  @service store;
+
   queryParams = {
     filter: {
       refreshModel: true,
@@ -14,18 +12,30 @@ export default class VendorsDetailsIndexRoute extends Route.extend(
     page: {
       refreshModel: true,
     },
+    size: {
+      refreshModel: true,
+    },
     sort: {
       refreshModel: true,
     },
   };
-  @service store;
-  modelName = 'bestuurseenheid';
 
-  mergeQueryOptions() {
-    return {
-      include: 'vendors',
+  model(params) {
+    const query = {
       'filter[vendors][:id:]': this.modelFor('vendors/details').id,
+      include: 'vendors,classificatie',
+      sort: params.sort,
+      page: {
+        number: params.page,
+        size: params.size,
+      },
     };
+
+    if (params.filter) {
+      query['filter'] = params.filter;
+    }
+
+    return this.store.query('bestuurseenheid', query);
   }
 
   setupController(controller, model) {
