@@ -59,7 +59,7 @@
             @skin="naked"
             @icon={{if this.hiddenKeyState "not-visible" "visible"}}
             @hideText={{true}}
-            {{on "click" (toggle "hiddenKeyState" this)}}
+            {{on "click" this.toggleHiddenKeyVisibility}}
             class="c-api-key__visibility-toggle"
           >
             {{t (if this.hiddenKeyState "actions.hide" "actions.show")}}
@@ -105,7 +105,6 @@
     @sort={{this.sort}}
     @size={{this.size}}
     @page={{this.page}}
-    @isLoading={{this.isLoading}}
     as |f|
   >
     <f.content as |c|>

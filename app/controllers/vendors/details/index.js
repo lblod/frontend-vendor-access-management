@@ -13,6 +13,9 @@ export default class VendorsDetailsIndexController extends Controller {
   @tracked bestuurseenheidToRemove;
   @tracked filter = '';
   @tracked page = 0;
+  // TODO: this state is persisted when switching between different vendors, we should probably reset it when the vendor id changes
+  @tracked hiddenKeyState = false;
+
   selectedNewBestuurseenheid;
   sort = 'naam';
   size = 20;
@@ -80,6 +83,11 @@ export default class VendorsDetailsIndexController extends Controller {
     if (this.removeFromList.isIdle || force) {
       this.bestuurseenheidToRemove = null;
     }
+  }
+
+  @action
+  toggleHiddenKeyVisibility() {
+    this.hiddenKeyState = !this.hiddenKeyState;
   }
 
   resetPagination() {
