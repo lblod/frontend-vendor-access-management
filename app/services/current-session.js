@@ -33,6 +33,6 @@ export default class CurrentSessionService extends Service {
   }
 
   get canManageVendors() {
-    return this.canAccess('LoketLB-vendorManagementGebruiker');
+    return this.canAccess('VMTGebruiker');
   }
 }
