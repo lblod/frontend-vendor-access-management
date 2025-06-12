@@ -2,10 +2,13 @@
   "name": "frontend-vendor-access-management",
   "version": "0.8.0",
   "private": true,
-  "description": "Small description for frontend-vendor-access-management goes here",
-  "repository": "",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lblod/frontend-vendor-access-management.git"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "Agentschap Binnenlands Bestuur (https://www.vlaanderen.be/agentschap-binnenlands-bestuur)",
   "directories": {
     "doc": "doc",
     "test": "tests"
