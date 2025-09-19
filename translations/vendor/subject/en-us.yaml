@@ -1,8 +1,6 @@
 main:
   head-1: Edit Vendor Access
   back: Back to overview
-card:
-  head-1: API key
 table:
   head-1: Access rights
   button-1: Add

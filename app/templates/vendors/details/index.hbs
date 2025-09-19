@@ -33,49 +33,6 @@
       >{{this.vendor.uri}}</AuLinkExternal>)
     </AuHelpText>
   </div>
-  <AuAccordion
-    @skin="border"
-    @iconOpen="settings"
-    @iconClosed="settings"
-    @buttonLabel={{t "vendor.subject.card.head-1"}}
-    class="au-u-max-width-xsmall"
-  >
-    {{! The AuContent wrapper is not really needed, but we depend on it for our hacky style overrides
-        TODO: remove the wrapper once the style bleeding issues are fixed in Appuniversum:
-        https://github.com/appuniversum/ember-appuniversum/issues/542
-    }}
-    <AuContent>
-      <div class="au-u-flex">
-        <div class="c-api-key au-u-margin-right-tiny">
-          <AuInput
-            @width="block"
-            @disabled={{true}}
-            id="input-regular"
-            type={{if this.hiddenKeyState "text" "password"}}
-            value={{this.vendor.key}}
-            class="c-api-key__input"
-          />
-          <AuButton
-            @skin="naked"
-            @icon={{if this.hiddenKeyState "not-visible" "visible"}}
-            @hideText={{true}}
-            {{on "click" this.toggleHiddenKeyVisibility}}
-            class="c-api-key__visibility-toggle"
-          >
-            {{t (if this.hiddenKeyState "actions.hide" "actions.show")}}
-          </AuButton>
-        </div>
-        <AuButton
-          @icon="copy"
-          @skin="secondary"
-          {{on "click" (fn this.copyToClipboard this.vendor.key)}}
-        >
-          {{t "actions.copy"}}
-        </AuButton>
-      </div>
-    </AuContent>
-  </AuAccordion>
-
   <AuToolbar class="au-o-region" as |Group|>
     <Group>
       <AuHeading @skin="3">{{t "vendor.subject.table.head-1"}}</AuHeading>

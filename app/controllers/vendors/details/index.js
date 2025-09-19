@@ -59,11 +59,6 @@ export default class VendorsDetailsIndexController extends Controller {
   }
 
   @action
-  copyToClipboard(key) {
-    navigator.clipboard.writeText(key);
-  }
-
-  @action
   showAddModal() {
     this.isAddingAdministrativeUnits = true;
   }

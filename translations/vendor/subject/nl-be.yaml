@@ -1,8 +1,6 @@
 main:
   head-1: Wijzig toegankelijkheid
   back: Terug naar overzicht
-card:
-  head-1: API sleutel
 table:
   head-1: Toegangsrechten
   button-1: Toevoegen
